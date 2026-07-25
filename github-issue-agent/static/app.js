@@ -73,11 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Open Connect GitHub Modal in Browser
-    btnAuthBrowser.addEventListener("click", () => {
+    // Open Connect GitHub Modal
+    btnAuthBrowser.addEventListener("click", (e) => {
+        e.preventDefault();
         modalInputToken.value = sessionStorage.getItem("user_github_token") || "";
         modalAuth.classList.remove("hidden");
     });
+
 
     btnCancelAuth.addEventListener("click", () => {
         modalAuth.classList.add("hidden");
@@ -101,12 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         
         const repoUrl = document.getElementById("repo_url").value.trim();
-        const issueNumber = parseInt(document.getElementById("issue_number").value) || 0;
-        const problemDescription = document.getElementById("problem_description").value.trim();
-        const tokenOverride = document.getElementById("token_override").value.trim();
+        const issueNumber = parseInt(document.getElementById("issue_number") ? document.getElementById("issue_number").value : "0") || 0;
+        const problemDescription = document.getElementById("problem_description") ? document.getElementById("problem_description").value.trim() : "";
+        const tokenOverrideInput = document.getElementById("token_override");
+        const tokenOverride = tokenOverrideInput ? tokenOverrideInput.value.trim() : "";
 
         // Priority: Form Override Token > Session Storage Token
         const activeToken = tokenOverride || sessionStorage.getItem("user_github_token") || "";
+
+
 
         if (!activeToken) {
             logTerminal("⚠️ WARNING: No GitHub token set! Click 'Connect GitHub Popup' so PRs open under YOUR account.", "err");
@@ -165,16 +170,22 @@ document.addEventListener("DOMContentLoaded", () => {
             // Handle States
             if (data.status === "waiting_approval") {
                 showApprovalModal(data);
-            } else if (data.status === "completed" && data.pr_url) {
+            } else if ((data.status === "completed" || data.status === "finished") && data.pr_url) {
                 clearInterval(pollInterval);
                 setLoading(false);
                 modalApproval.classList.add("hidden");
                 showSuccessModal(data.pr_url);
-            } else if (data.status === "failed") {
+            } else if (data.status === "completed" || data.status === "finished" || data.status === "failed") {
                 clearInterval(pollInterval);
                 setLoading(false);
-                logTerminal(`Workflow failed: ${JSON.stringify(data.errors)}`, "err");
+                modalApproval.classList.add("hidden");
+                if (data.errors && data.errors.length > 0) {
+                    logTerminal(`⚠️ Workflow finished: ${data.errors.join("; ")}`, "err");
+                } else {
+                    logTerminal("Workflow execution finished.", "info");
+                }
             }
+
         } catch (err) {
             console.error("Poll status error:", err);
         }
@@ -241,10 +252,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showSuccessModal(url) {
         successPrUrl.href = url;
-        successPrUrl.textContent = url;
+        successPrUrl.innerHTML = `<span>View Pull Request on GitHub ↗</span>`;
         modalSuccess.classList.remove("hidden");
         logTerminal(`✅ SUCCESS! Pull Request Created on YOUR GitHub: ${url}`, "sys");
     }
+
 
     btnCloseSuccess.addEventListener("click", () => {
         modalSuccess.classList.add("hidden");
@@ -268,4 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
         terminalLogs.appendChild(line);
         terminalLogs.scrollTop = terminalLogs.scrollHeight;
     }
+
+    // Auto-start polling on page load to detect running/waiting approval workflows
+    startPollingStatus();
 });
+

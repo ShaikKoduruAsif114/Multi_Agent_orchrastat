@@ -41,7 +41,22 @@ def add(a: int, b: int) -> int:
         a: First int
         b: Second int
     """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("add expects two integers")
     return a + b
+
+
+@tool
+def multiply(a: int, b: int) -> int:
+    """Multiply a and b.
+
+    Args:
+        a: First int
+        b: Second int
+    """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("multiply expects two integers")
+    return a * b
 
 
 @tool
@@ -52,16 +67,29 @@ def divide(a: int, b: int) -> float:
         a: First int
         b: Second int
     """
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("divide expects two integers")
     if b == 0:
         return "Error: Cannot divide by zero"
     return a / b
+
+
+@tool
+def ping(target: str, count: int = 1) -> str:
+    """Ping a target a number of times.
+
+    Args:
+        target: Target to ping
+        count: Number of pings
+    """
+    return f"pong {target} x{count}"
 
 
 # ─────────────────────────────────────────
 # 3. BIND TOOLS TO MODEL
 # ─────────────────────────────────────────
 
-tools = [add, multiply, divide]
+tools = [add, multiply, divide, ping]
 tools_by_name = {tool.name: tool for tool in tools}
 model_with_tools = model.bind_tools(tools)
 
@@ -196,5 +224,7 @@ def run_agent(question: str):
 
 if __name__ == "__main__":
 
-    # Test 1: Simple addition
+    # Test 1: Ping command
     run_agent("ping 3 and 4.")
+    # Test 2: Simple addition
+    run_agent("add 3 and 4.")

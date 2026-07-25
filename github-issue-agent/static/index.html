@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issue Agent — Autonomous Code Fix System</title>
+    <!-- Modern Typography: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <div class="app-background">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="layout-container">
+        
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="brand-section">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>GitHub Issue Agent</h1>
+                    <span class="sub-badge">Autonomous Code Fix System</span>
+                </div>
+            </div>
+
+            <div class="header-status">
+                <div class="status-badge" id="ollama-status">
+                    <span class="status-dot green pulse"></span>
+                    <span class="status-label">Llama 3.2 via Ollama</span>
+                </div>
+                <div class="status-badge" id="github-auth-status">
+                    <span class="status-dot amber"></span>
+                    <span class="status-label" id="auth-label">Checking GitHub Token...</span>
+                </div>
+                <button class="btn-secondary" id="btn-auth-browser">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Connect GitHub Popup
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <!-- LEFT PANEL: CONFIG & CONTROLS -->
+            <section class="glass-card config-panel">
+                <div class="card-header">
+                    <h2>Agent Execution Settings</h2>
+                    <p>Select operating mode and target repository</p>
+                </div>
+
+                <!-- MODE SELECTOR -->
+                <div class="mode-tabs">
+                    <button class="tab-btn active" id="tab-issue" data-mode="issue">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Mode 1 — Issue Mode
+                    </button>
+                    <button class="tab-btn" id="tab-smart" data-mode="smart">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                        </svg>
+                        Mode 2 — Smart Mode
+                    </button>
+                </div>
+
+                <form id="agent-form" class="form-grid">
+                    <div class="input-group">
+                        <label for="repo_url">GitHub Repository URL <span class="req">*</span></label>
+                        <input type="text" id="repo_url" placeholder="https://github.com/owner/repository" required>
+                    </div>
+
+                    <!-- MODE 1 FIELD -->
+                    <div class="input-group" id="group-issue-number">
+                        <label for="issue_number">GitHub Issue Number <span class="req">*</span></label>
+                        <input type="number" id="issue_number" placeholder="e.g. 42" value="1">
+                    </div>
+
+                    <!-- MODE 2 FIELD -->
+                    <div class="input-group hidden" id="group-problem-desc">
+                        <label for="problem_description">Problem Description / Code Focus <span class="opt">(Optional)</span></label>
+                        <textarea id="problem_description" rows="3" placeholder="Describe the issue or leave blank to auto-scan codebase for potential bugs..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="token_override">GitHub Personal Access Token <span class="opt">(Optional if set in .env)</span></label>
+                        <input type="password" id="token_override" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="btn-submit-agent">
+                        <span class="btn-text">🚀 Launch Autonomous Fix Agent</span>
+                        <div class="spinner hidden" id="form-spinner"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- RIGHT PANEL: PIPELINE & MONITORING -->
+            <section class="glass-card monitor-panel">
+                <div class="card-header">
+                    <h2>Live LangGraph Pipeline</h2>
+                    <p>Real-time node execution flowchart & state monitor</p>
+                </div>
+
+                <!-- WORKFLOW NODES FLOW -->
+                <div class="pipeline-flow">
+                    <div class="pipe-node" id="node-input_node">
+                        <div class="node-icon">1</div>
+                        <div class="node-info">
+                            <span class="node-title">input_node</span>
+                            <span class="node-sub">Validate Inputs</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-fetch_node">
+                        <div class="node-icon">2</div>
+                        <div class="node-info">
+                            <span class="node-title">fetch_node</span>
+                            <span class="node-sub">Fetch Issue</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-research_node">
+                        <div class="node-icon">3</div>
+                        <div class="node-info">
+                            <span class="node-title">research_node</span>
+                            <span class="node-sub">Scan Codebase</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-code_writer_node">
+                        <div class="node-icon">4</div>
+                        <div class="node-info">
+                            <span class="node-title">code_writer</span>
+                            <span class="node-sub">Llama 3.2 Fix</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-test_writer_node">
+                        <div class="node-icon">5</div>
+                        <div class="node-info">
+                            <span class="node-title">test_writer</span>
+                            <span class="node-sub">Pytest Generator</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-human_approval_node">
+                        <div class="node-icon">6</div>
+                        <div class="node-info">
+                            <span class="node-title">approval_node</span>
+                            <span class="node-sub">Human Review</span>
+                        </div>
+                    </div>
+                    <div class="pipe-arrow">➔</div>
+
+                    <div class="pipe-node" id="node-pr_node">
+                        <div class="node-icon">7</div>
+                        <div class="node-info">
+                            <span class="node-title">pr_node</span>
+                            <span class="node-sub">Open Pull Request</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE METRICS BAR -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="m-val" id="val-llm-calls">0</span>
+                        <span class="m-lbl">LLM Calls</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="m-val" id="val-retry-count">0 / 3</span>
+                        <span class="m-lbl">Retries Used</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="m-val" id="val-target-files">0</span>
+                        <span class="m-lbl">Files Changed</span>
+                    </div>
+                </div>
+
+                <!-- LIVE ACTIVITY LOG TERMINAL -->
+                <div class="terminal-card">
+                    <div class="term-header">
+                        <span class="term-title">⚡ Execution Logs</span>
+                        <span class="term-badge" id="term-status-badge">Idle</span>
+                    </div>
+                    <div class="term-body" id="terminal-logs">
+                        <div class="log-line sys">[SYSTEM] GitHub Issue Agent initialized. Ready for execution.</div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- HUMAN APPROVAL MODAL -->
+        <div class="modal-overlay hidden" id="modal-approval">
+            <div class="modal-card glass-modal">
+                <div class="modal-header">
+                    <div class="modal-title-group">
+                        <span class="pulse-badge amber">HUMAN APPROVAL REQUIRED</span>
+                        <h2 id="modal-issue-title">Issue Review</h2>
+                    </div>
+                    <span class="modal-subtitle" id="modal-files-list">Target File: -</span>
+                </div>
+
+                <div class="modal-body scrollable">
+                    <div class="diff-section">
+                        <h3>Proposed Code Fix (Llama 3.2)</h3>
+                        <pre class="code-block" id="modal-proposed-fix"><code>Generating code fix...</code></pre>
+                    </div>
+
+                    <div class="diff-section">
+                        <h3>Generated Pytest Unit Tests</h3>
+                        <pre class="code-block" id="modal-tests-written"><code>Generating unit tests...</code></pre>
+                    </div>
+
+                    <div class="feedback-section hidden" id="feedback-group">
+                        <label for="user-feedback">Reason for Rejection / Feedback for Retry:</label>
+                        <textarea id="user-feedback" rows="2" placeholder="Specify what logic or edge cases need improvement..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-danger" id="btn-reject-fix">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        Reject & Request Changes
+                    </button>
+                    <button class="btn-success" id="btn-approve-fix">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        Approve & Create Pull Request
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PR SUCCESS MODAL -->
+        <div class="modal-overlay hidden" id="modal-success">
+            <div class="modal-card glass-modal success-card">
+                <div class="success-icon">🎉</div>
+                <h2>Pull Request Opened Successfully!</h2>
+                <p>The autonomous fix and unit tests have been committed to a new branch and submitted as a GitHub Pull Request.</p>
+                
+                <div class="pr-box">
+                    <span class="pr-label">Pull Request URL:</span>
+                    <a href="#" target="_blank" class="pr-link" id="success-pr-url">https://github.com/owner/repo/pull/1</a>
+                </div>
+
+                <div class="modal-footer justify-center">
+                    <button class="btn-primary" id="btn-close-success">Close & Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONNECT GITHUB MODAL -->
+        <div class="modal-overlay hidden" id="modal-auth">
+            <div class="modal-card glass-modal" style="max-width: 560px;">
+                <div class="modal-header">
+                    <h2>🔑 Connect Your GitHub Account</h2>
+                    <span class="modal-subtitle">Connect your account so pull requests open under your GitHub profile.</span>
+                </div>
+                <div class="modal-body" style="gap: 16px;">
+                    
+                    <div class="input-group">
+                        <label>Option 1: 1-Click Instant GitHub Authorization</label>
+                        <a href="/api/auth/github/login" class="btn-primary" style="justify-content: center; gap: 10px; text-decoration: none; padding: 14px; background: linear-gradient(135deg, #24292e, #1b1f23); border: 1px solid rgba(255,255,255,0.2);">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                            </svg>
+                            ⚡ 1-Click Authorize with GitHub
+                        </a>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 10px; margin: 4px 0;">
+                        <hr style="flex: 1; border: 0; border-top: 1px solid var(--border-glass);">
+                        <span style="font-size: 11px; color: var(--text-dim);">OR</span>
+                        <hr style="flex: 1; border: 0; border-top: 1px solid var(--border-glass);">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Option 2: 1-Click GitHub Token Link</label>
+                        <a href="https://github.com/settings/tokens/new?scopes=repo,workflow&description=GitHub+Issue+Agent" target="_blank" class="btn-secondary" style="justify-content: center; gap: 8px; text-decoration: none; padding: 10px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            Generate Token on GitHub (Pre-configured scopes)
+                        </a>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="modal-input-token">Paste Access Token Below</label>
+                        <input type="password" id="modal-input-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="btn-cancel-auth">Cancel</button>
+                    <button class="btn-primary" id="btn-save-auth-token">Save & Connect</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

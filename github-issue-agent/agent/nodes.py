@@ -328,10 +328,22 @@ def docker_execution_node(state: AgentState) -> Dict[str, Any]:
     env = os.environ.copy()
 
     try:
-        # Write fix file
-        target_path = os.path.join(temp_dir, os.path.basename(target_file))
+        # Write fix file maintaining directory structure
+        target_file_normalized = target_file.replace("\\", "/")
+        target_path = os.path.join(temp_dir, *target_file_normalized.split("/"))
+        os.makedirs(os.path.dirname(target_path), exist_ok=True)
+        
         with open(target_path, "w", encoding="utf-8") as f:
             f.write(proposed_fix)
+
+        # Create __init__.py in parent directories so imports work
+        curr = temp_dir
+        for p in target_file_normalized.split("/")[:-1]:
+            curr = os.path.join(curr, p)
+            init_file = os.path.join(curr, "__init__.py")
+            if not os.path.exists(init_file):
+                with open(init_file, "w", encoding="utf-8") as f:
+                    pass
 
         # Write test file
         test_path = os.path.join(temp_dir, "test_auto_fix.py")

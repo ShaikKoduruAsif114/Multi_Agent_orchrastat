@@ -59,8 +59,13 @@ def input_node(state: AgentState) -> Dict[str, Any]:
 
     errors = list(state.get("errors", []))
 
-    if not repo_url:
-        errors.append("Repository URL is required.")
+    if not repo_url or "github.com/" not in repo_url.lower():
+        raise ValueError("Invalid Repository URL. Please provide a valid GitHub repository link (e.g., https://github.com/owner/repo).")
+
+    # Validate that it has at least owner/repo
+    parts = repo_url.rstrip("/").split("github.com/")[-1].split("/")
+    if len(parts) < 2:
+        raise ValueError("Invalid Repository URL format. Must include owner and repository name.")
 
     mode = "issue" if (issue_number and int(issue_number) > 0) else "smart"
 

@@ -117,8 +117,11 @@ def scan_for_bugs(repo_url: str, token: str) -> list:
     files = list_repo_files.invoke({"repo_url": repo_url, "token": token})
     if isinstance(files, list) and files and not files[0].startswith("Error"):
         code_files = [f for f in files if f.endswith(('.py', '.js', '.ts', '.java', '.go', '.rs')) and not f.startswith('.') and 'test' not in f.lower()]
-        return code_files[:5] if code_files else files[:5]
-    return ["src/main.py"]
+        if code_files:
+            return code_files[:5]
+        return files[:5]
+    
+    raise ValueError(f"Could not fetch repository files. Are you sure you have access to {repo_url}?")
 
 
 @tool

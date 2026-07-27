@@ -165,7 +165,7 @@ def code_writer_node(state: AgentState) -> Dict[str, Any]:
     llm_calls = state.get("llm_calls", 0)
 
     target_file = relevant_files[0] if relevant_files else "src/fix.py"
-    log_step(f"Step 4/8: Invoking Llama 3.2 via Ollama to generate code fix for `{target_file}`... (local LLM processing, ~15s)", "info", session_id)
+    log_step(f"Step 4/8: Invoking Llama 3 on Groq API to generate code fix for `{target_file}`...", "info", session_id)
 
     content = read_file.invoke({"repo_url": repo_url, "file_path": target_file, "token": token})
 
@@ -221,7 +221,7 @@ def test_writer_node(state: AgentState) -> Dict[str, Any]:
     relevant_files = state.get("relevant_files", ["src/fix.py"])
     target_file = relevant_files[0] if relevant_files else "fix.py"
 
-    log_step("Step 5/8: Writing Pytest unit test suite with Llama 3.2... (local LLM processing, ~15s)", "info", session_id)
+    log_step("Step 5/8: Writing Pytest unit test suite with Llama 3 on Groq API...", "info", session_id)
 
     ext = os.path.splitext(target_file)[1].lower()
     module_name = os.path.basename(target_file).replace(".py", "")

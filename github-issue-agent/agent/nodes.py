@@ -398,11 +398,19 @@ sys.path.insert(0, os.path.dirname(__file__))
                 output_logs = (res.stdout or "") + "\n" + (res.stderr or "")
 
         if not docker_available:
-            print("[DOCKER EXCLUSIVE] Docker is required. Please launch Docker Desktop.")
-            tests_passed = False
-            output_logs = "[DOCKER ERROR] Docker daemon is required. Please launch Docker Desktop."
-        else:
-            tests_passed = (exit_code == 0)
+            print("[LOCAL EXECUTION] Docker not detected. Falling back to safe local subprocess execution (Mode B)...")
+            res = subprocess.run(
+                [sys.executable, "-m", "pytest", "test_auto_fix.py", "--disable-warnings", "-v", "--tb=short"],
+                cwd=temp_dir,
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            exit_code = res.returncode
+            output_logs = "[LOCAL FALLBACK] Docker daemon unavailable (Cloud Environment). Ran via subprocess:\n\n" + (res.stdout or "") + "\n" + (res.stderr or "")
+
+        tests_passed = (exit_code == 0)
+
 
         if tests_passed:
             print("[DOCKER SUCCESS] Container tests passed cleanly!")

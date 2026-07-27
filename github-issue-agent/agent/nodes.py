@@ -228,7 +228,8 @@ def test_writer_node(state: AgentState) -> Dict[str, Any]:
     log_step("Step 5/8: Writing Pytest unit test suite with Llama 3 on Groq API...", "info", session_id)
 
     ext = os.path.splitext(target_file)[1].lower()
-    module_name = os.path.basename(target_file).replace(".py", "")
+    # Convert 'src/bank_account.py' to 'src.bank_account' for correct absolute imports
+    import_path = target_file.replace(".py", "").replace("/", ".").replace("\\", ".")
 
     if ext == ".py":
         system_prompt = """You are an expert Python test engineer. 
@@ -240,7 +241,7 @@ def test_writer_node(state: AgentState) -> Dict[str, Any]:
 
 Issue being fixed: {issue_title}
 Target file: {target_file}
-Module name for imports: {module_name}
+Module name for imports: {import_path}
 
 Code fix:
 {proposed_fix[:1500]}

@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Session UUID Generation
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    let sessionId = sessionStorage.getItem("app_session_id");
+    if (!sessionId) {
+        sessionId = generateUUID();
+        sessionStorage.setItem("app_session_id", sessionId);
+    }
+
     // DOM Elements
     const form = document.getElementById("agent-form");
     const tabIssue = document.getElementById("tab-issue");
@@ -126,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     repo_url: repoUrl,
+                    session_id: sessionId,
                     mode: currentMode,
                     issue_number: issueNumber,
                     problem_description: problemDescription,
@@ -157,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let renderedLogsCount = 0;
     async function pollStatus() {
         try {
-            const res = await fetch("/api/status");
+            const res = await fetch(`/api/status?session_id=${sessionId}`);
             const data = await res.json();
 
             // Update Metrics
@@ -274,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
             await fetch("/api/approval", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ approved, feedback })
+                body: JSON.stringify({ session_id: sessionId, approved, feedback })
             });
         } catch (err) {
             logTerminal(`Error submitting approval: ${err}`, "err");

@@ -50,12 +50,13 @@ def invoke_llm_with_timeout(messages, timeout_sec=6.0) -> str:
 
 def input_node(state: AgentState) -> Dict[str, Any]:
     """Node 1: Collect and validate user inputs and detect execution mode."""
+    session_id = state.get("session_id", "default")
     repo_url = state.get("repo_url", "").strip()
     issue_number = state.get("issue_number", 0)
     problem_description = state.get("problem_description", "").strip()
     token = state.get("token", "").strip()
 
-    log_step("Step 1/8: Validating execution settings and target repository URL...", "sys")
+    log_step("Step 1/8: Validating execution settings and target repository URL...", "sys", session_id)
 
     errors = list(state.get("errors", []))
 
@@ -81,6 +82,7 @@ def input_node(state: AgentState) -> Dict[str, Any]:
 
 def fetch_node(state: AgentState) -> Dict[str, Any]:
     """Node 2: Get problem details from GitHub issue or description/codebase scan."""
+    session_id = state.get("session_id", "default")
     repo_url = state["repo_url"]
     token = state.get("token", "")
     mode = state.get("mode", "smart")
@@ -88,7 +90,7 @@ def fetch_node(state: AgentState) -> Dict[str, Any]:
     problem_description = state.get("problem_description", "")
     errors = list(state.get("errors", []))
 
-    log_step(f"Step 2/8: Fetching problem details in [{mode.upper()} MODE]...", "sys")
+    log_step(f"Step 2/8: Fetching problem details in [{mode.upper()} MODE]...", "sys", session_id)
 
     issue_title = ""
     issue_body = ""
@@ -124,10 +126,11 @@ def fetch_node(state: AgentState) -> Dict[str, Any]:
 
 def research_node(state: AgentState) -> Dict[str, Any]:
     """Node 3: Fast codebase research — pinpoint relevant source code files instantaneously."""
+    session_id = state.get("session_id", "default")
     repo_url = state["repo_url"]
     token = state.get("token", "")
 
-    log_step("Step 3/8: Researching repository tree to locate target source files...", "sys")
+    log_step("Step 3/8: Researching repository tree to locate target source files...", "sys", session_id)
 
     all_files = list_repo_files.invoke({"repo_url": repo_url, "token": token})
     if not isinstance(all_files, list) or (all_files and all_files[0].startswith("Error")):
@@ -141,7 +144,7 @@ def research_node(state: AgentState) -> Dict[str, Any]:
         ]
         relevant_files = code_files[:3] if code_files else all_files[:3]
 
-    log_step(f"Target files selected for fix: {', '.join(relevant_files)}", "info")
+    log_step(f"Target files selected for fix: {', '.join(relevant_files)}", "info", session_id)
 
     return {
         "relevant_files": relevant_files,
@@ -151,6 +154,7 @@ def research_node(state: AgentState) -> Dict[str, Any]:
 
 def code_writer_node(state: AgentState) -> Dict[str, Any]:
     """Node 4: Fast code fix writer with strict timeout protection."""
+    session_id = state.get("session_id", "default")
     repo_url = state["repo_url"]
     token = state.get("token", "")
     issue_title = state.get("issue_title", "")
@@ -160,7 +164,7 @@ def code_writer_node(state: AgentState) -> Dict[str, Any]:
     llm_calls = state.get("llm_calls", 0)
 
     target_file = relevant_files[0] if relevant_files else "src/fix.py"
-    log_step(f"Step 4/8: Invoking Llama 3.2 via Ollama to generate code fix for `{target_file}`... (local LLM processing, ~15s)", "info")
+    log_step(f"Step 4/8: Invoking Llama 3.2 via Ollama to generate code fix for `{target_file}`... (local LLM processing, ~15s)", "info", session_id)
 
     content = read_file.invoke({"repo_url": repo_url, "file_path": target_file, "token": token})
 
@@ -210,12 +214,13 @@ def resolve_issue():
 
 def test_writer_node(state: AgentState) -> Dict[str, Any]:
     """Node 5: Generate real pytest tests using LLM based on the proposed fix."""
+    session_id = state.get("session_id", "default")
     issue_title = state.get("issue_title", "Fix")
     proposed_fix = state.get("proposed_fix", "")
     relevant_files = state.get("relevant_files", ["src/fix.py"])
     target_file = relevant_files[0] if relevant_files else "fix.py"
 
-    log_step("Step 5/8: Writing Pytest unit test suite with Llama 3.2... (local LLM processing, ~15s)", "info")
+    log_step("Step 5/8: Writing Pytest unit test suite with Llama 3.2... (local LLM processing, ~15s)", "info", session_id)
 
     ext = os.path.splitext(target_file)[1].lower()
     module_name = os.path.basename(target_file).replace(".py", "")
@@ -298,13 +303,14 @@ def docker_execution_node(state: AgentState) -> Dict[str, Any]:
     import subprocess
     import shutil
 
+    session_id = state.get("session_id", "default")
     proposed_fix = state.get("proposed_fix", "")
     tests_written = state.get("tests_written", "")
     relevant_files = state.get("relevant_files", ["src/fix.py"])
     retry_count = state.get("retry_count", 0)
     target_file = relevant_files[0] if relevant_files else "src/fix.py"
 
-    log_step("Step 6/8: Spawning isolated Docker container to execute pytest suite...", "sys")
+    log_step("Step 6/8: Spawning isolated Docker container to execute pytest suite...", "sys", session_id)
 
     print("\n" + "="*60)
     print("[DOCKER] RUNNING AUTOMATED PYTEST SUITE")
@@ -464,29 +470,32 @@ sys.path.insert(0, os.path.dirname(__file__))
 def human_approval_node(state: AgentState) -> Dict[str, Any]:
     """Node 7: Present work to human and request approval."""
     import time
+    session_id = state.get("session_id", "default")
     issue_title = state.get("issue_title", "")
     relevant_files = state.get("relevant_files", [])
     proposed_fix = state.get("proposed_fix", "")
     tests_written = state.get("tests_written", "")
     retry_count = state.get("retry_count", 0)
 
-    from agent.workflow_state import CURRENT_WORKFLOW
-    is_web = state.get("is_web", False) or (CURRENT_WORKFLOW.get("status") in ["running", "waiting_approval"])
+    from agent.workflow_state import get_session_state
+    session_state = get_session_state(session_id)
+    
+    is_web = state.get("is_web", False) or (session_state.get("status") in ["running", "waiting_approval"])
 
     if is_web:
-        CURRENT_WORKFLOW["status"] = "waiting_approval"
-        CURRENT_WORKFLOW["state"] = state
-        CURRENT_WORKFLOW["user_decision"] = None
+        session_state["status"] = "waiting_approval"
+        session_state["state"] = state
+        session_state["user_decision"] = None
 
-        print("\n[WEB UI] Workflow paused at human_approval_node. Waiting for user approval on web interface...")
+        print(f"\n[{session_id}] [WEB UI] Workflow paused at human_approval_node. Waiting for user approval on web interface...")
 
-        while CURRENT_WORKFLOW.get("user_decision") is None:
+        while session_state.get("user_decision") is None:
             time.sleep(0.3)
 
-        decision = CURRENT_WORKFLOW["user_decision"]
+        decision = session_state["user_decision"]
         human_approved = decision.get("approved", False)
         feedback = decision.get("feedback", "").strip()
-        CURRENT_WORKFLOW["status"] = "running"
+        session_state["status"] = "running"
 
     else:
         print("\n" + "="*60)

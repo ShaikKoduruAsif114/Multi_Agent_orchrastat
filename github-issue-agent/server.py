@@ -22,19 +22,21 @@ load_dotenv()
 from agent.state import AgentState
 from agent.graph import app as graph_app
 from agent.github_auth import authenticate_github_via_browser
-from agent.workflow_state import CURRENT_WORKFLOW as current_workflow
+from agent.workflow_state import get_session_state, WORKFLOWS
 
 api = FastAPI(title="GitHub Issue Agent API")
 
 
 class RunRequest(BaseModel):
     repo_url: str
+    session_id: str
     mode: str = "issue"  # "issue" or "smart"
     issue_number: Optional[int] = 0
     problem_description: Optional[str] = ""
     token: Optional[str] = ""
 
 class ApprovalRequest(BaseModel):
+    session_id: str
     approved: bool
     feedback: Optional[str] = ""
 
@@ -132,8 +134,9 @@ def trigger_github_auth():
 
 @api.post("/api/run")
 async def run_agent_workflow(req: RunRequest):
-    current_workflow["status"] = "idle"
-    current_workflow["user_decision"] = None
+    session_state = get_session_state(req.session_id)
+    session_state["status"] = "idle"
+    session_state["user_decision"] = None
 
     token = req.token or os.getenv("GITHUB_TOKEN", "").strip()
     if token == "your_github_personal_access_token_here":
@@ -141,6 +144,7 @@ async def run_agent_workflow(req: RunRequest):
 
     initial_state = {
         "repo_url": req.repo_url.strip(),
+        "session_id": req.session_id,
         "issue_number": req.issue_number or 0,
         "token": token,
         "problem_description": req.problem_description.strip(),
@@ -161,30 +165,30 @@ async def run_agent_workflow(req: RunRequest):
         "errors": []
     }
 
-
-    current_workflow["status"] = "running"
-    current_workflow["state"] = initial_state
+    session_state["status"] = "running"
+    session_state["state"] = initial_state
 
     def execute_graph():
         try:
             final_state = graph_app.invoke(initial_state)
-            current_workflow["state"] = final_state
-            current_workflow["status"] = "completed" if final_state.get("pr_url") else "finished"
+            session_state["state"] = final_state
+            session_state["status"] = "completed" if final_state.get("pr_url") else "finished"
         except Exception as e:
-            current_workflow["status"] = "failed"
-            if current_workflow["state"]:
-                current_workflow["state"]["errors"].append(str(e))
+            session_state["status"] = "failed"
+            if session_state["state"]:
+                session_state["state"]["errors"].append(str(e))
 
     asyncio.get_event_loop().run_in_executor(None, execute_graph)
 
-    return {"status": "started", "mode": initial_state["mode"]}
+    return {"status": "started", "mode": initial_state["mode"], "session_id": req.session_id}
 
 
 @api.get("/api/status")
-def get_workflow_status():
-    state = current_workflow.get("state") or {}
+def get_workflow_status(session_id: str):
+    session_state = get_session_state(session_id)
+    state = session_state.get("state") or {}
     return {
-        "status": current_workflow["status"],
+        "status": session_state["status"],
         "repo_url": state.get("repo_url", ""),
         "mode": state.get("mode", ""),
         "issue_title": state.get("issue_title", ""),
@@ -195,22 +199,21 @@ def get_workflow_status():
         "tests_passed": state.get("tests_passed", False),
         "test_results": state.get("test_results", ""),
         "pr_url": state.get("pr_url", ""),
-
         "human_approved": state.get("human_approved", False),
         "retry_count": state.get("retry_count", 0),
         "llm_calls": state.get("llm_calls", 0),
         "errors": state.get("errors", []),
-        "logs": current_workflow.get("logs", [])
+        "logs": session_state.get("logs", [])
     }
-
 
 
 @api.post("/api/approval")
 def post_approval_decision(req: ApprovalRequest):
-    if current_workflow["status"] != "waiting_approval":
+    session_state = get_session_state(req.session_id)
+    if session_state["status"] != "waiting_approval":
         raise HTTPException(status_code=400, detail="Workflow is not currently awaiting approval.")
 
-    current_workflow["user_decision"] = {
+    session_state["user_decision"] = {
         "approved": req.approved,
         "feedback": req.feedback or ""
     }

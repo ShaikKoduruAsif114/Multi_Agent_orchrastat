@@ -6,6 +6,7 @@ from langchain_core.messages import AnyMessage
 class AgentState(TypedDict):
     # User inputs
     repo_url: str
+    session_id: str
     issue_number: int
     token: str
     problem_description: str

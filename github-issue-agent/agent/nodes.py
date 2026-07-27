@@ -169,8 +169,8 @@ def code_writer_node(state: AgentState) -> Dict[str, Any]:
 
     content = read_file.invoke({"repo_url": repo_url, "file_path": target_file, "token": token})
 
-    # FIX 1: snippet is now included in the prompt so LLM sees the actual code it is fixing
-    snippet = content[:800] if not content.startswith("Error") else "# Source file unavailable"
+    # Provide the full file content so the LLM has complete context
+    snippet = content if not content.startswith("Error") else "# Source file unavailable"
 
     feedback = ""
     for msg in reversed(messages):

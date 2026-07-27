@@ -197,6 +197,10 @@ Provide the complete fixed code for this file."""
     if llm_result:
         llm_calls += 1
         proposed_fix = llm_result
+        if "```python" in proposed_fix:
+            proposed_fix = proposed_fix.split("```python")[1].split("```")[0].strip()
+        elif "```" in proposed_fix:
+            proposed_fix = proposed_fix.split("```")[1].split("```")[0].strip()
     else:
         proposed_fix = f"""# Proposed Fix for {target_file}
 # Issue: {issue_title}

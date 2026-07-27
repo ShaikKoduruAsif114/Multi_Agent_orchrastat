@@ -143,7 +143,33 @@ def research_node(state: AgentState) -> Dict[str, Any]:
             and not f.startswith('.')
             and 'test' not in f.lower()
         ]
-        relevant_files = code_files[:3] if code_files else all_files[:3]
+        
+        issue_text = state.get("issue_title", "") + "\n" + state.get("issue_body", "")
+        
+        prompt = f"""Given this GitHub Issue:
+{issue_text[:500]}
+
+And these repository files:
+{chr(10).join(code_files)}
+
+Which SINGLE file path is the most likely file that needs to be edited to fix this issue?
+Return ONLY the exact file path from the list, nothing else."""
+
+        llm_result = invoke_llm_with_timeout(
+            [SystemMessage(content="You are an expert developer. Return only the exact file path. Do not include markdown or explanations."), 
+             HumanMessage(content=prompt)],
+            timeout_sec=10.0
+        )
+        
+        selected = llm_result.strip() if llm_result else ""
+        if "```" in selected:
+            selected = selected.replace("```", "").strip()
+            
+        if selected in all_files:
+            relevant_files = [selected]
+        else:
+            # Fallback if LLM fails or hallucinates a file
+            relevant_files = code_files[:3] if code_files else all_files[:3]
 
     log_step(f"Target files selected for fix: {', '.join(relevant_files)}", "info", session_id)
 

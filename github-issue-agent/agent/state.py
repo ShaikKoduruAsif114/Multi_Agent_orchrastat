@@ -10,6 +10,7 @@ class AgentState(TypedDict):
     token: str
     problem_description: str
     mode: str                    # "issue" or "smart"
+    is_web: bool                 # Web UI session flag
 
     # Fetched from GitHub
     issue_title: str
@@ -20,6 +21,10 @@ class AgentState(TypedDict):
     proposed_fix: str
     tests_written: str
     pr_url: str
+
+    # Automated Docker Verification
+    tests_passed: bool
+    test_results: str
 
     # Control
     messages: Annotated[list[AnyMessage], operator.add]

@@ -1,12 +1,20 @@
+import os
+import sys
 import json
 import random
 import string
 import concurrent.futures
 from typing import Dict, Any
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 from langchain_ollama import ChatOllama
 from langchain_core.messages import SystemMessage, HumanMessage
-
 from agent.state import AgentState
+from agent.workflow_state import log_step
 from agent.tools import (
     get_github_issue,
     list_repo_files,
@@ -47,6 +55,8 @@ def input_node(state: AgentState) -> Dict[str, Any]:
     problem_description = state.get("problem_description", "").strip()
     token = state.get("token", "").strip()
 
+    log_step("Step 1/8: Validating execution settings and target repository URL...", "sys")
+
     errors = list(state.get("errors", []))
 
     if not repo_url:
@@ -73,6 +83,8 @@ def fetch_node(state: AgentState) -> Dict[str, Any]:
     problem_description = state.get("problem_description", "")
     errors = list(state.get("errors", []))
 
+    log_step(f"Step 2/8: Fetching problem details in [{mode.upper()} MODE]...", "sys")
+
     issue_title = ""
     issue_body = ""
 
@@ -89,7 +101,7 @@ def fetch_node(state: AgentState) -> Dict[str, Any]:
         else:
             issue_title = res.get("title", f"Issue #{issue_number}")
             issue_body = res.get("body", "")
-    else:  # smart mode
+    else:
         if problem_description:
             issue_title = f"Smart Mode Fix: {problem_description[:50]}"
             issue_body = problem_description
@@ -110,12 +122,21 @@ def research_node(state: AgentState) -> Dict[str, Any]:
     repo_url = state["repo_url"]
     token = state.get("token", "")
 
+    log_step("Step 3/8: Researching repository tree to locate target source files...", "sys")
+
     all_files = list_repo_files.invoke({"repo_url": repo_url, "token": token})
     if not isinstance(all_files, list) or (all_files and all_files[0].startswith("Error")):
         relevant_files = ["src/main.py"]
     else:
-        code_files = [f for f in all_files if f.endswith(('.py', '.js', '.ts', '.java')) and not f.startswith('.') and 'test' not in f.lower()]
+        code_files = [
+            f for f in all_files
+            if f.endswith(('.py', '.js', '.ts', '.java'))
+            and not f.startswith('.')
+            and 'test' not in f.lower()
+        ]
         relevant_files = code_files[:3] if code_files else all_files[:3]
+
+    log_step(f"Target files selected for fix: {', '.join(relevant_files)}", "info")
 
     return {
         "relevant_files": relevant_files,
@@ -134,8 +155,12 @@ def code_writer_node(state: AgentState) -> Dict[str, Any]:
     llm_calls = state.get("llm_calls", 0)
 
     target_file = relevant_files[0] if relevant_files else "src/fix.py"
+    log_step(f"Step 4/8: Invoking Llama 3.2 via Ollama to generate code fix for `{target_file}`... (local LLM processing, ~15s)", "info")
+
     content = read_file.invoke({"repo_url": repo_url, "file_path": target_file, "token": token})
-    snippet = content[:800] if not content.startswith("Error") else "# Source file"
+
+    # FIX 1: snippet is now included in the prompt so LLM sees the actual code it is fixing
+    snippet = content[:800] if not content.startswith("Error") else "# Source file unavailable"
 
     feedback = ""
     for msg in reversed(messages):
@@ -143,11 +168,21 @@ def code_writer_node(state: AgentState) -> Dict[str, Any]:
             feedback = msg.content
             break
 
-    system_prompt = "You are an expert software developer fixing a bug. Output concise Python code."
-    prompt = f"Issue: {issue_title[:150]}\nTarget File: {target_file}\n{f'Feedback: {feedback}' if feedback else ''}\nProvide the fixed code."
+    system_prompt = "You are an expert software developer fixing a bug. Output concise Python code only. No explanations."
 
-    llm_result = invoke_llm_with_timeout([SystemMessage(content=system_prompt), HumanMessage(content=prompt)], timeout_sec=18.0)
+    prompt = f"""Issue: {issue_title[:150]}
+Target File: {target_file}
+{f'Feedback: {feedback}' if feedback else ''}
 
+Current file content:
+{snippet}
+
+Provide the complete fixed code for this file."""
+
+    llm_result = invoke_llm_with_timeout(
+        [SystemMessage(content=system_prompt), HumanMessage(content=prompt)],
+        timeout_sec=18.0
+    )
 
     if llm_result:
         llm_calls += 1
@@ -169,27 +204,252 @@ def resolve_issue():
 
 
 def test_writer_node(state: AgentState) -> Dict[str, Any]:
-    """Node 5: Fast Pytest test writer."""
+    """Node 5: Generate real pytest tests using LLM based on the proposed fix."""
     issue_title = state.get("issue_title", "Fix")
+    proposed_fix = state.get("proposed_fix", "")
     relevant_files = state.get("relevant_files", ["src/fix.py"])
     target_file = relevant_files[0] if relevant_files else "fix.py"
 
-    tests_written = f"""# Pytest Unit Test Suite
-import pytest
+    log_step("Step 5/8: Writing Pytest unit test suite with Llama 3.2... (local LLM processing, ~15s)", "info")
 
-def test_auto_fix_resolution():
-    \"\"\"Unit test covering fix for: {issue_title[:60]}\"\"\"
-    # Verify fix functionality
-    assert True
+    ext = os.path.splitext(target_file)[1].lower()
+    module_name = os.path.basename(target_file).replace(".py", "")
+
+    if ext == ".py":
+        system_prompt = """You are an expert Python test engineer. 
+        Write real pytest tests that actually verify the code works.
+        Never write assert True alone.
+        Always test real behavior."""
+
+        prompt = f"""Write a pytest test file for this code fix.
+
+Issue being fixed: {issue_title}
+Target file: {target_file}
+Module name for imports: {module_name}
+
+Code fix:
+{proposed_fix[:1500]}
+
+Requirements:
+- Write at minimum 2 real test functions
+- Use real assertions that can actually fail
+- Do NOT write assert True as the only assertion
 """
+
+        llm_result = invoke_llm_with_timeout(
+            [SystemMessage(content=system_prompt),
+             HumanMessage(content=prompt)],
+            timeout_sec=18.0
+        )
+
+        if llm_result and len(llm_result.strip()) > 50:
+            tests_written = llm_result
+            if "```python" in tests_written:
+                tests_written = tests_written.split("```python")[1].split("```")[0].strip()
+            elif "```" in tests_written:
+                tests_written = tests_written.split("```")[1].split("```")[0].strip()
+        else:
+            tests_written = f"""import pytest
+import ast
+
+def test_fix_has_valid_syntax():
+    \"\"\"Verify the generated fix is valid Python.\"\"\"
+    code = {repr(proposed_fix[:500])}
+    try:
+        ast.parse(code)
+    except SyntaxError as e:
+        pytest.fail(f"Generated fix has syntax error: {{e}}")
+
+def test_fix_is_not_empty():
+    \"\"\"Verify the fix actually contains code.\"\"\"
+    code = {repr(proposed_fix[:500])}
+    assert len(code.strip()) > 10, "Fix appears to be empty"
+"""
+    else:
+        # Polyglot file verification test for JS, TS, Java, etc.
+        tests_written = f"""import pytest
+import os
+
+def test_file_exists_and_not_empty():
+    \"\"\"Verify target fix file `{os.path.basename(target_file)}` exists and is non-empty.\"\"\"
+    fix_code = {repr(proposed_fix[:1000])}
+    assert len(fix_code.strip()) > 5, "Fix content must not be empty"
+
+def test_file_integrity():
+    \"\"\"Verify file content structure for {os.path.basename(target_file)}.\"\"\"
+    fix_code = {repr(proposed_fix[:1000])}
+    assert not fix_code.startswith("Error"), "Fix should not contain error messages"
+"""
+
     return {
         "tests_written": tests_written,
         "llm_calls": state.get("llm_calls", 0)
     }
 
 
+def docker_execution_node(state: AgentState) -> Dict[str, Any]:
+    """Node 6: Run pytest inside isolated Docker container."""
+    import tempfile
+    import subprocess
+    import shutil
+
+    proposed_fix = state.get("proposed_fix", "")
+    tests_written = state.get("tests_written", "")
+    relevant_files = state.get("relevant_files", ["src/fix.py"])
+    retry_count = state.get("retry_count", 0)
+    target_file = relevant_files[0] if relevant_files else "src/fix.py"
+
+    log_step("Step 6/8: Spawning isolated Docker container to execute pytest suite...", "sys")
+
+    print("\n" + "="*60)
+    print("[DOCKER] RUNNING AUTOMATED PYTEST SUITE")
+    print("="*60)
+
+    temp_dir = tempfile.mkdtemp(prefix="agent_sandbox_")
+    container_name = f"pytest_sandbox_{os.path.basename(temp_dir)}"
+    docker_available = False
+    tests_passed = False
+    output_logs = ""
+    # FIX 2: exit_code default prevents UnboundLocalError if build fails
+    exit_code = 1
+    docker_bin = "docker"
+    env = os.environ.copy()
+
+    try:
+        # Write fix file
+        target_path = os.path.join(temp_dir, os.path.basename(target_file))
+        with open(target_path, "w", encoding="utf-8") as f:
+            f.write(proposed_fix)
+
+        # Write test file
+        test_path = os.path.join(temp_dir, "test_auto_fix.py")
+        with open(test_path, "w", encoding="utf-8") as f:
+            f.write(tests_written)
+
+        # Write conftest.py so imports resolve correctly inside container
+        conftest_path = os.path.join(temp_dir, "conftest.py")
+        with open(conftest_path, "w", encoding="utf-8") as f:
+            f.write("""import sys
+import os
+sys.path.insert(0, os.path.dirname(__file__))
+""")
+
+        # Locate Docker binary dynamically and inject DockerDesktop into PATH
+        docker_dir = os.path.expanduser(r"~\AppData\Local\Programs\DockerDesktop\resources\bin")
+        if os.path.exists(docker_dir) and docker_dir not in env.get("PATH", ""):
+            env["PATH"] = docker_dir + os.pathsep + env.get("PATH", "")
+
+        docker_bin = shutil.which("docker", path=env["PATH"]) or os.path.join(docker_dir, "docker.exe")
+
+        # Check Docker daemon is running
+        try:
+            res_check = subprocess.run(
+                [docker_bin, "info"],
+                capture_output=True,
+                text=True,
+                timeout=5,
+                env=env
+            )
+            docker_available = (res_check.returncode == 0)
+        except Exception:
+            docker_available = False
+
+        if docker_available:
+            dockerfile_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+            build_result = subprocess.run(
+                [
+                    docker_bin, "build",
+                    "-t", "pytest-sandbox",
+                    "-f", os.path.join(dockerfile_dir, "docker", "Dockerfile.sandbox"),
+                    dockerfile_dir
+                ],
+                capture_output=True,
+                text=True,
+                timeout=60,
+                env=env
+            )
+
+            if build_result.returncode != 0:
+                print(f"[DOCKER BUILD FAILED]\n{build_result.stdout}\n{build_result.stderr}")
+                docker_available = False
+            else:
+                print("[DOCKER] Sandbox image ready. Spawning container...")
+                cmd = [
+                    docker_bin, "run", "--rm",
+                    "--name", container_name,
+                    "-v", f"{temp_dir}:/app",
+                    "-w", "/app",
+                    "--network", "none",
+                    "--memory", "256m",
+                    "--cpus", "0.5",
+                    "pytest-sandbox",
+                    "pytest", "test_auto_fix.py",
+                    "--disable-warnings", "-v",
+                    "--tb=short"
+                ]
+                res = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                    env=env
+                )
+                exit_code = res.returncode
+                output_logs = (res.stdout or "") + "\n" + (res.stderr or "")
+
+        if not docker_available:
+            print("[DOCKER EXCLUSIVE] Docker is required. Please launch Docker Desktop.")
+            tests_passed = False
+            output_logs = "[DOCKER ERROR] Docker daemon is required. Please launch Docker Desktop."
+        else:
+            tests_passed = (exit_code == 0)
+
+        if tests_passed:
+            print("[DOCKER SUCCESS] Container tests passed cleanly!")
+            print(output_logs[:300])
+        else:
+            print("[DOCKER FAILURE] Container test execution failed:")
+            print(output_logs[:500])
+
+    except subprocess.TimeoutExpired:
+        tests_passed = False
+        output_logs = "Error: Docker container execution timed out after 30 seconds"
+        print(f"[DOCKER TIMEOUT] {output_logs}")
+    except Exception as e:
+        tests_passed = False
+        output_logs = f"Error during sandbox execution: {str(e)}"
+        print(f"[DOCKER ERROR] {output_logs}")
+    finally:
+        shutil.rmtree(temp_dir, ignore_errors=True)
+        # FIX 3: use docker_bin and env in cleanup so it works on Windows
+        if docker_available:
+            try:
+                subprocess.run(
+                    [docker_bin, "rm", "-f", container_name],
+                    capture_output=True,
+                    timeout=3,
+                    env=env
+                )
+            except Exception:
+                pass
+
+    messages = list(state.get("messages", []))
+    if not tests_passed:
+        retry_count += 1
+        messages.append(HumanMessage(
+            content=f"Docker Test Failure - Fix your code based on these errors:\n{output_logs[:800]}"
+        ))
+
+    return {
+        "tests_passed": tests_passed,
+        "test_results": output_logs,
+        "retry_count": retry_count,
+        "messages": messages
+    }
+
+
 def human_approval_node(state: AgentState) -> Dict[str, Any]:
-    """Node 6: Present work to human and request approval (yes/no)."""
+    """Node 7: Present work to human and request approval."""
     import time
     issue_title = state.get("issue_title", "")
     relevant_files = state.get("relevant_files", [])
@@ -197,7 +457,6 @@ def human_approval_node(state: AgentState) -> Dict[str, Any]:
     tests_written = state.get("tests_written", "")
     retry_count = state.get("retry_count", 0)
 
-    # Check if running in Web UI mode (or active server workflow)
     from agent.workflow_state import CURRENT_WORKFLOW
     is_web = state.get("is_web", False) or (CURRENT_WORKFLOW.get("status") in ["running", "waiting_approval"])
 
@@ -208,7 +467,6 @@ def human_approval_node(state: AgentState) -> Dict[str, Any]:
 
         print("\n[WEB UI] Workflow paused at human_approval_node. Waiting for user approval on web interface...")
 
-        # Poll until user submits approval or rejection via Web UI API
         while CURRENT_WORKFLOW.get("user_decision") is None:
             time.sleep(0.3)
 
@@ -217,9 +475,7 @@ def human_approval_node(state: AgentState) -> Dict[str, Any]:
         feedback = decision.get("feedback", "").strip()
         CURRENT_WORKFLOW["status"] = "running"
 
-
     else:
-        # CLI Mode
         print("\n" + "="*60)
         print("HUMAN APPROVAL REQUIRED")
         print("="*60)
@@ -256,9 +512,8 @@ def human_approval_node(state: AgentState) -> Dict[str, Any]:
     }
 
 
-
 def pr_node(state: AgentState) -> Dict[str, Any]:
-    """Node 7: Create branch, commit fix + tests, and open pull request on GitHub."""
+    """Node 8: Create branch, commit fix + tests, and open pull request on GitHub."""
     repo_url = state["repo_url"]
     token = state.get("token", "")
     issue_title = state.get("issue_title", "Fix issue")

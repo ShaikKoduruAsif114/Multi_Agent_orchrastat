@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css?v=3">
+    <link rel="stylesheet" href="/static/styles.css?v=4">
 </head>
+
 
 <body>
 
@@ -157,8 +158,16 @@
                         </div>
                     </div>
 
-                    <div class="pipe-node" id="node-human_approval_node">
+                    <div class="pipe-node" id="node-docker_execution_node">
                         <div class="node-icon">6</div>
+                        <div class="node-info">
+                            <span class="node-title">Docker</span>
+                            <span class="node-sub">pytest_sandbox</span>
+                        </div>
+                    </div>
+
+                    <div class="pipe-node" id="node-human_approval_node">
+                        <div class="node-icon">7</div>
                         <div class="node-info">
                             <span class="node-title">Review</span>
                             <span class="node-sub">approval_node</span>
@@ -166,13 +175,14 @@
                     </div>
 
                     <div class="pipe-node" id="node-pr_node">
-                        <div class="node-icon">7</div>
+                        <div class="node-icon">8</div>
                         <div class="node-info">
                             <span class="node-title">Open PR</span>
                             <span class="node-sub">pr_node</span>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- LIVE METRICS BAR -->
                 <div class="metrics-grid">
@@ -228,6 +238,12 @@
                         <h3>Generated Pytest Unit Tests</h3>
                         <pre class="code-block" id="modal-tests-written"><code>Generating unit tests...</code></pre>
                     </div>
+
+                    <div class="diff-section">
+                        <h3>🐳 Docker Container Pytest Execution Logs</h3>
+                        <pre class="code-block docker-log-block" id="modal-test-results"><code>Container pytest execution logs...</code></pre>
+                    </div>
+
 
                     <div class="feedback-section hidden" id="feedback-group">
                         <label for="user-feedback">Reason for Rejection / Feedback for Retry:</label>
@@ -326,7 +342,8 @@
 
     </div>
 
-    <script src="/static/app.js?v=3"></script>
+    <script src="/static/app.js?v=4"></script>
+
 
 </body>
 </html>

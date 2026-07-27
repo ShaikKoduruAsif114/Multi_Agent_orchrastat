@@ -7,14 +7,15 @@ from agent.nodes import (
     research_node,
     code_writer_node,
     test_writer_node,
+    docker_execution_node,
     human_approval_node,
     pr_node,
 )
-from agent.edges import check_approval_and_retries
+from agent.edges import check_docker_tests, check_approval_and_retries
 
 
 def build_graph():
-    """Assemble and compile the complete GitHub Issue Agent LangGraph workflow."""
+    """Assemble and compile the complete GitHub Issue Agent LangGraph workflow with Docker execution."""
     workflow = StateGraph(AgentState)
 
     # Add Nodes
@@ -23,6 +24,7 @@ def build_graph():
     workflow.add_node("research_node", research_node)
     workflow.add_node("code_writer_node", code_writer_node)
     workflow.add_node("test_writer_node", test_writer_node)
+    workflow.add_node("docker_execution_node", docker_execution_node)
     workflow.add_node("human_approval_node", human_approval_node)
     workflow.add_node("pr_node", pr_node)
 
@@ -34,7 +36,18 @@ def build_graph():
     workflow.add_edge("fetch_node", "research_node")
     workflow.add_edge("research_node", "code_writer_node")
     workflow.add_edge("code_writer_node", "test_writer_node")
-    workflow.add_edge("test_writer_node", "human_approval_node")
+    workflow.add_edge("test_writer_node", "docker_execution_node")
+
+    # Conditional edge following Docker test execution
+    workflow.add_conditional_edges(
+        "docker_execution_node",
+        check_docker_tests,
+        {
+            "human_approval_node": "human_approval_node",
+            "code_writer_node": "code_writer_node",
+            "__end__": END,
+        }
+    )
 
     # Conditional edge following human approval
     workflow.add_conditional_edges(

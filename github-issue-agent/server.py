@@ -5,6 +5,12 @@ import json
 import asyncio
 from typing import Dict, Any, Optional
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
@@ -145,6 +151,8 @@ async def run_agent_workflow(req: RunRequest):
         "relevant_files": [],
         "proposed_fix": "",
         "tests_written": "",
+        "tests_passed": False,
+        "test_results": "",
         "pr_url": "",
         "messages": [],
         "human_approved": False,
@@ -152,6 +160,7 @@ async def run_agent_workflow(req: RunRequest):
         "llm_calls": 0,
         "errors": []
     }
+
 
     current_workflow["status"] = "running"
     current_workflow["state"] = initial_state
@@ -183,12 +192,17 @@ def get_workflow_status():
         "relevant_files": state.get("relevant_files", []),
         "proposed_fix": state.get("proposed_fix", ""),
         "tests_written": state.get("tests_written", ""),
+        "tests_passed": state.get("tests_passed", False),
+        "test_results": state.get("test_results", ""),
         "pr_url": state.get("pr_url", ""),
+
         "human_approved": state.get("human_approved", False),
         "retry_count": state.get("retry_count", 0),
         "llm_calls": state.get("llm_calls", 0),
-        "errors": state.get("errors", [])
+        "errors": state.get("errors", []),
+        "logs": current_workflow.get("logs", [])
     }
+
 
 
 @api.post("/api/approval")

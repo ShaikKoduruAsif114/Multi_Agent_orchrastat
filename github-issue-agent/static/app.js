@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    let sessionId = sessionStorage.getItem("app_session_id");
-    if (!sessionId) {
-        sessionId = generateUUID();
-        sessionStorage.setItem("app_session_id", sessionId);
-    }
+    // Generate a fresh session ID on every page load so the process resets on refresh
+    let sessionId = generateUUID();
+    sessionStorage.setItem("app_session_id", sessionId);
 
     // DOM Elements
     const form = document.getElementById("agent-form");

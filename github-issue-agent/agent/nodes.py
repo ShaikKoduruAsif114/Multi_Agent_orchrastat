@@ -11,7 +11,7 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 from langchain_core.messages import SystemMessage, HumanMessage
 from agent.state import AgentState
 from agent.workflow_state import log_step
@@ -28,12 +28,13 @@ from agent.tools import (
 
 
 def get_llm():
-    """Initialize Llama 3.2 via Ollama."""
-    return ChatOllama(model="llama3.2", temperature=0)
+    """Initialize Llama 3.2 via Groq cloud API (free, fast, works on Render)."""
+    groq_key = os.getenv("GROQ_API_KEY", "").strip()
+    return ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=groq_key)
 
 
-def invoke_llm_with_timeout(messages, timeout_sec=6.0) -> str:
-    """Invoke Ollama LLM with a strict timeout to prevent local CPU/VRAM hangs."""
+def invoke_llm_with_timeout(messages, timeout_sec=30.0) -> str:
+    """Invoke Groq LLM with a timeout to prevent hangs."""
     try:
         llm = get_llm()
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
@@ -41,7 +42,7 @@ def invoke_llm_with_timeout(messages, timeout_sec=6.0) -> str:
             res = future.result(timeout=timeout_sec)
             return str(res.content)
     except concurrent.futures.TimeoutError:
-        print("\n[LLM TIMEOUT] Ollama local call exceeded timeout limit. Using fast structured fix.")
+        print("\n[LLM TIMEOUT] Groq API call exceeded timeout limit.")
         return ""
     except Exception as e:
         print(f"\n[LLM ERROR] {str(e)}")

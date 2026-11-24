@@ -1,0 +1,506 @@
+{
+  "warning": "Stored aggregate values are archival evidence, not endorsements; protocols/models/coverage differ and some packages are superseded or invalid.",
+  "families": [
+    {
+      "family": "exp_20260908_205847_full30",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260909_013108_full30",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260909_013936_full30",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260909_015211_full30",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260909_061550_full30",
+      "direct_raw_count": 30,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260911_014541_full30",
+      "direct_raw_count": 25,
+      "model_labels": {
+        "laguna-s-2.1": 2
+      },
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_20260911_030238_full30",
+      "direct_raw_count": 33,
+      "model_labels": {
+        "laguna-s-2.1": 6
+      },
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_full30_v1",
+      "direct_raw_count": 90,
+      "model_labels": {},
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/exp_full30_v1/ablations/ablation_no_retry/aggregates.json",
+          "source_sha256": "f9ad8e8ef7c05964b5c31941063f67ed24a8326360ee137905edd47d596920f6",
+          "recorded_system_counts": {
+            "multi_agent": {
+              "N": 30,
+              "e2e_resolved": 13,
+              "first_pass_resolved": 11,
+              "hidden_tests_passed": 13,
+              "localized": 18,
+              "loc_eligible": 30,
+              "retries_total": 12,
+              "retries_mean": 0.4,
+              "llm_calls_mean": 3,
+              "latency_mean_s": 29.0
+            }
+          }
+        },
+        {
+          "source": "evaluation/results/exp_full30_v1/aggregates/aggregates.json",
+          "source_sha256": "e884e28fe6532f0e901a48831b2a9384a3da9e42cae3535b06c7d4c5c6ba29a8",
+          "recorded_system_counts": {
+            "baseline_a": {
+              "N": 30,
+              "e2e_resolved": 6,
+              "first_pass_resolved": 6,
+              "hidden_tests_passed": 6,
+              "localized": 30,
+              "loc_eligible": 30,
+              "retries_total": 0,
+              "retries_mean": 0,
+              "llm_calls_mean": 1,
+              "latency_mean_s": 8.52
+            },
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 26,
+              "first_pass_resolved": 20,
+              "hidden_tests_passed": 26,
+              "localized": 30,
+              "loc_eligible": 30,
+              "retries_total": 18,
+              "retries_mean": 0.6,
+              "llm_calls_mean": 2.6,
+              "latency_mean_s": 13.65
+            },
+            "multi_agent": {
+              "N": 30,
+              "e2e_resolved": 15,
+              "first_pass_resolved": 12,
+              "hidden_tests_passed": 15,
+              "localized": 22,
+              "loc_eligible": 30,
+              "retries_total": 11,
+              "retries_mean": 0.367,
+              "llm_calls_mean": 3.533,
+              "latency_mean_s": 20.4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "exp_full30_v2_20260909",
+      "direct_raw_count": 60,
+      "model_labels": {},
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/exp_full30_v2_20260909/aggregates/aggregates.json",
+          "source_sha256": "f98408d091aa3665e4bccc672657dea5cbe50dadc73a9644978e5b8fedac1600",
+          "recorded_system_counts": {
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 0,
+              "first_pass_resolved": 0,
+              "hidden_tests_passed": 0,
+              "localized": 0,
+              "loc_eligible": 30,
+              "retries_total": 90,
+              "retries_mean": 3,
+              "llm_calls_mean": 5,
+              "latency_mean_s": 9.31
+            },
+            "multi_agent": {
+              "N": 30,
+              "e2e_resolved": 2,
+              "first_pass_resolved": 2,
+              "hidden_tests_passed": 2,
+              "localized": 30,
+              "loc_eligible": 30,
+              "retries_total": 0,
+              "retries_mean": 0,
+              "llm_calls_mean": 3.9,
+              "latency_mean_s": 7.47
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "exp_smoke_multiagent_1",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_smoke_v2",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_smoke_v3",
+      "direct_raw_count": 3,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_task009_orca_smoke_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_v2_smoke_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_v2_smoke_20260909_metrics",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "exp_v2_smoke_20260909_retry",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "kios_kimi_k3_task009_e2e_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "kios_kimi_k3_task009_smoke_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "kios_laguna_task009_smoke_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_baseline_smoke_final_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_adaptive_v2_final_vs_baseline_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 57
+      },
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/nara_laguna_adaptive_v2_final_vs_baseline_20260910/aggregates/aggregates.json",
+          "source_sha256": "530b2ce16ff1d3e0f3dd52ec86abc5ea9fc407ba0549055ae64050bf61436d51",
+          "recorded_system_counts": {
+            "adaptive_multi_agent": {
+              "N": 30,
+              "e2e_resolved": 26,
+              "first_pass_resolved": 26,
+              "hidden_tests_passed": 26,
+              "localized": 27,
+              "loc_eligible": 27,
+              "retries_total": 1,
+              "retries_mean": 0.033,
+              "llm_calls_mean": 2.407,
+              "latency_mean_s": 35.78
+            },
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 26,
+              "first_pass_resolved": 21,
+              "hidden_tests_passed": 26,
+              "localized": 30,
+              "loc_eligible": 30,
+              "retries_total": 21,
+              "retries_mean": 0.7,
+              "llm_calls_mean": 2.7,
+              "latency_mean_s": 22.9
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "nara_laguna_adaptive_v3_final_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 51
+      },
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/nara_laguna_adaptive_v3_final_20260910/aggregates/aggregates.json",
+          "source_sha256": "3177675244d13aa20f4808a2a5f7a84e1b29672f442186be2e03d64c19dfa937",
+          "recorded_system_counts": {
+            "adaptive_multi_agent": {
+              "N": 30,
+              "e2e_resolved": 25,
+              "first_pass_resolved": 25,
+              "hidden_tests_passed": 25,
+              "localized": 27,
+              "loc_eligible": 28,
+              "retries_total": 0,
+              "retries_mean": 0,
+              "llm_calls_mean": 2.107,
+              "latency_mean_s": 23.75
+            },
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 19,
+              "first_pass_resolved": 17,
+              "hidden_tests_passed": 19,
+              "localized": 23,
+              "loc_eligible": 23,
+              "retries_total": 16,
+              "retries_mean": 0.533,
+              "llm_calls_mean": 2.696,
+              "latency_mean_s": 17.82
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "nara_laguna_adaptive_vs_baseline_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 57
+      },
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/nara_laguna_adaptive_vs_baseline_20260910/aggregates/aggregates.json",
+          "source_sha256": "1b844f5e5c8d43679edc4ee48ddfe89a1660ccd47d15fa09b574e70d1866694f",
+          "recorded_system_counts": {
+            "adaptive_multi_agent": {
+              "N": 30,
+              "e2e_resolved": 24,
+              "first_pass_resolved": 24,
+              "hidden_tests_passed": 24,
+              "localized": 27,
+              "loc_eligible": 28,
+              "retries_total": 0,
+              "retries_mean": 0,
+              "llm_calls_mean": 2,
+              "latency_mean_s": 20.18
+            },
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 25,
+              "first_pass_resolved": 22,
+              "hidden_tests_passed": 25,
+              "localized": 29,
+              "loc_eligible": 29,
+              "retries_total": 17,
+              "retries_mean": 0.567,
+              "llm_calls_mean": 2.586,
+              "latency_mean_s": 18.79
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "nara_laguna_adaptive_vs_baseline_20260910_smoke",
+      "direct_raw_count": 2,
+      "model_labels": {
+        "laguna-s-2.1": 2
+      },
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_archstrong_final30_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 59
+      },
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/nara_laguna_archstrong_final30_20260910/aggregates/aggregates.json",
+          "source_sha256": "bdba1dd5dcc36cf42f152ea5f9e17faffa3df93da80252783aab0a3e5267cb36",
+          "recorded_system_counts": {
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 24,
+              "first_pass_resolved": 19,
+              "hidden_tests_passed": 24,
+              "localized": 29,
+              "loc_eligible": 29,
+              "retries_total": 23,
+              "retries_mean": 0.767,
+              "llm_calls_mean": 2.793,
+              "latency_mean_s": 21.74
+            },
+            "multi_agent": {
+              "N": 30,
+              "e2e_resolved": 14,
+              "first_pass_resolved": 11,
+              "hidden_tests_passed": 14,
+              "localized": 20,
+              "loc_eligible": 21,
+              "retries_total": 6,
+              "retries_mean": 0.2,
+              "llm_calls_mean": 3.733,
+              "latency_mean_s": 54.44
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "nara_laguna_archstrong_final30_final_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 60
+      },
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_archstrong_final30_v2_20260910",
+      "direct_raw_count": 60,
+      "model_labels": {
+        "laguna-s-2.1": 58
+      },
+      "aggregate_packages": [
+        {
+          "source": "evaluation/results/nara_laguna_archstrong_final30_v2_20260910/aggregates/aggregates.json",
+          "source_sha256": "27a0240ed298fefe45b31840bf974f6d75820c8446fd8eb0172b509dbb6af66d",
+          "recorded_system_counts": {
+            "baseline_b": {
+              "N": 30,
+              "e2e_resolved": 20,
+              "first_pass_resolved": 20,
+              "hidden_tests_passed": 20,
+              "localized": 28,
+              "loc_eligible": 28,
+              "retries_total": 0,
+              "retries_mean": 0,
+              "llm_calls_mean": 2,
+              "latency_mean_s": 13.09
+            },
+            "multi_agent": {
+              "N": 30,
+              "e2e_resolved": 19,
+              "first_pass_resolved": 11,
+              "hidden_tests_passed": 19,
+              "localized": 25,
+              "loc_eligible": 25,
+              "retries_total": 10,
+              "retries_mean": 0.333,
+              "llm_calls_mean": 3.733,
+              "latency_mean_s": 59.82
+            }
+          }
+        }
+      ]
+    },
+    {
+      "family": "nara_laguna_archstrong_task009_smoke_20260910",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_archstrong_task009_smoke_20260910_final",
+      "direct_raw_count": 1,
+      "model_labels": {
+        "laguna-s-2.1": 1
+      },
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_task009_clean_e2e_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_task009_e2e_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_laguna_v2_vs_baseline_full30_20260909",
+      "direct_raw_count": 60,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_qwen38_v2_vs_baseline_full30_20260909",
+      "direct_raw_count": 59,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_v2_smoke_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "nara_v2_smoke_timeoutfix_20260909",
+      "direct_raw_count": 1,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "orca_deepseek_v4flash_v2_vs_baseline_full30_20260909",
+      "direct_raw_count": 60,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "test_adaptive_task009",
+      "direct_raw_count": 0,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "test_adaptive_v2_task009",
+      "direct_raw_count": 0,
+      "model_labels": {},
+      "aggregate_packages": []
+    },
+    {
+      "family": "test_adaptive_v3_task009",
+      "direct_raw_count": 0,
+      "model_labels": {},
+      "aggregate_packages": []
+    }
+  ]
+}

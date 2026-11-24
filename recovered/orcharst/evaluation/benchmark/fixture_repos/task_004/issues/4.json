@@ -1,0 +1,11 @@
+{
+  "number": 4,
+  "title": "Bug: is_palindrome() fails on mixed-case strings and truncate() always adds ellipsis",
+  "body": "## Bug Report\n\n**File:** `src/string_utils.py`\n\n### Description\n`is_palindrome()` does not normalize case before checking, so 'Racecar' returns False.\n`count_words()` uses `text.split(' ')` which counts multiple consecutive spaces as extra empty words ('hello  world' counts as 3 instead of 2).\n`truncate()` always appends '...' even when the string fits within `max_length`.\n\n### Expected Behavior\n- `is_palindrome('Racecar')` should be True\n- `count_words('hello  world')` should be 2\n- `truncate('Hi there', 100)` should be 'Hi there' (no ellipsis)",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "labels": [
+    "bug",
+    "parsing",
+    "easy"
+  ]
+}

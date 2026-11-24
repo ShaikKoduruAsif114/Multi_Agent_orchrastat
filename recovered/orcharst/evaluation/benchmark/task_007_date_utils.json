@@ -1,0 +1,29 @@
+{
+  "task_id": "task_007",
+  "repository": "https://github.com/benchmark-fixtures/task_007_date_utils",
+  "issue_id": 1,
+  "issue_title": "Bug: days_between() returns negative values when the first date is later, and is_weekend() misclassifies Fridays",
+  "issue_body": "## Bug Report\n**File:** `src/date_utils.py`\n\n`days_between(a, b)` returns a negative number when `a` is later than `b`; callers expect the number of days between two dates to be the absolute difference. `is_weekend()` incorrectly uses `weekday() > 5` so Friday (weekday 4) is misclassified and Sunday (weekday 6) is missed.\n### Expected\n- `days_between` is always non-negative\n- `is_weekend` True for Sat/Sun only",
+  "gold_file": "src/date_utils.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "days_between(reversed) returns negative",
+    "is_weekend(Friday) returns True",
+    "is_weekend(Sunday) returns False"
+  ],
+  "expected_behaviors": [
+    "days_between is absolute",
+    "is_weekend True only Sat/Sun"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_007.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_007_date_utils) defined in evaluation/benchmark/specs",
+    "selection_reason": "Arithmetic & logic bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 3,
+    "notes": "Agent must identify src/date_utils.py."
+  }
+}

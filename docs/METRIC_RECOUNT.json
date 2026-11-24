@@ -1,0 +1,82 @@
+{
+  "nara_laguna_archstrong_final30_final_20260910": {
+    "baseline_b": {
+      "entries": 30,
+      "classes": {
+        "resolved": 24,
+        "genuine_agent_failure": 6
+      },
+      "final_resolved_field_all": 24,
+      "repair_eligible_all": 10,
+      "repair_eligible_clean": 10,
+      "repair_recovered_clean": 4,
+      "localization_evaluable": 30,
+      "localization_top1": 30
+    },
+    "multi_agent": {
+      "entries": 30,
+      "classes": {
+        "resolved": 17,
+        "genuine_agent_failure": 7,
+        "provider_failure": 6
+      },
+      "final_resolved_field_all": 17,
+      "repair_eligible_all": 15,
+      "repair_eligible_clean": 9,
+      "repair_recovered_clean": 2,
+      "localization_evaluable": 23,
+      "localization_top1": 23
+    },
+    "strict_clean_pairs": {
+      "N": 24,
+      "resolved": {
+        "baseline_b": 19,
+        "multi_agent": 17
+      }
+    }
+  },
+  "nara_laguna_adaptive_v3_final_20260910": {
+    "adaptive_multi_agent": {
+      "entries": 30,
+      "classes": {
+        "resolved": 25,
+        "provider_failure": 3,
+        "genuine_agent_failure": 2
+      },
+      "final_resolved_field_all": 25,
+      "repair_eligible_all": 3,
+      "repair_eligible_clean": 3,
+      "repair_recovered_clean": 3,
+      "localization_evaluable": 28,
+      "localization_top1": 27
+    },
+    "baseline_b": {
+      "entries": 30,
+      "classes": {
+        "resolved": 19,
+        "genuine_agent_failure": 4,
+        "provider_failure": 7
+      },
+      "final_resolved_field_all": 19,
+      "repair_eligible_all": 6,
+      "repair_eligible_clean": 6,
+      "repair_recovered_clean": 2,
+      "localization_evaluable": 23,
+      "localization_top1": 23
+    },
+    "strict_clean_pairs": {
+      "N": 21,
+      "resolved": {
+        "adaptive_multi_agent": 19,
+        "baseline_b": 18
+      }
+    },
+    "stored_primary": {
+      "entries": 44,
+      "resolved": {
+        "adaptive_multi_agent": 19,
+        "baseline_b": 19
+      }
+    }
+  }
+}

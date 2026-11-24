@@ -1,0 +1,23 @@
+{
+  "note": "Original canonical fixture files remain missing. These preserved alternative paths have exact frozen-input hashes; no source file was reconstructed or changed.",
+  "recoveries": [
+    {
+      "missing_original": "evaluation/benchmark/fixture_repos/task_021/src/ledger.py",
+      "exact_candidate": "evaluation/tmp/fixtures/task_021_ledger/src/ledger.py",
+      "sha256": "071822ad317512a12107ccd4f78bf61bb248cd47b0fd7f8e7a64f1c989e10887",
+      "match": true
+    },
+    {
+      "missing_original": "evaluation/benchmark/fixture_repos/task_024/src/lru_cache.py",
+      "exact_candidate": "evaluation/tmp/fixtures/task_024_lru_cache/src/lru_cache.py",
+      "sha256": "d714936892660cbfdfd627c7dc89ca60feb01f15cb439f9d480f7e0b5897dc0f",
+      "match": true
+    },
+    {
+      "missing_original": "evaluation/benchmark/fixture_repos/task_025/src/slugify.py",
+      "exact_candidate": "evaluation/tmp/fixtures/task_025_slugify/src/slugify.py",
+      "sha256": "5af369029316968530c40883211c10af04be7e6700c3567a8e4b452e020b2059",
+      "match": true
+    }
+  ]
+}

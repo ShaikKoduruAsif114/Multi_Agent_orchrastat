@@ -1,0 +1,11 @@
+{
+  "number": 27,
+  "title": "Bug: resolve_path() joins URLs/paths wrongly, missing extension detection, and relative walk escapes root",
+  "body": "## Bug Report\n**File:** `src/path_resolver.py`\n\n`resolve_path(base, sub)` breaks when `sub` is absolute (should return the absolute sub as-is) or when segments are empty. `has_extension()` returns True for names like 'archive.tar.gz' even when checking for '.gz' on a stem-only check basis; `is_within_root()` incorrectly approves paths containing '..' segments.\n### Expected\n- absolute sub -> returned unchanged\n- 'a/../../etc' must be rejected by is_within_root",
+  "repository": "https://github.com/benchmark-fixtures/task_027_path_resolver",
+  "labels": [
+    "bug",
+    "file_path",
+    "medium"
+  ]
+}

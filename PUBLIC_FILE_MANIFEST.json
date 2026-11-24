@@ -1,0 +1,1861 @@
+{
+  "algorithm": "sha256",
+  "self_excluded": "PUBLIC_FILE_MANIFEST.json",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 436,
+      "sha256": "4276fa56506e9d854ceb3eb1644290b88221e2505f0ed8b530a7ebfb3c7c565f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4705,
+      "sha256": "4badbe1f282dacf3b0d6abe82015bb18412b15cec21197af42ebc4546f4003be"
+    },
+    {
+      "path": "agent.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/ARCHIVE-SAFETY.md",
+      "bytes": 991,
+      "sha256": "45072062cf73f57fe95202033adc393232e131898e10584e8b28a03609ba3deb"
+    },
+    {
+      "path": "docs/EXPERIMENTS.md",
+      "bytes": 6353,
+      "sha256": "644544e87ed91c34443d316d40562f84b0a3a8e3242be60c8a7266ac645e0536"
+    },
+    {
+      "path": "docs/FIXTURE_RECOVERY.json",
+      "bytes": 1089,
+      "sha256": "feb6adf8c26a9411c3f848574d591f09b69a5b6960a68fcd59ddc7ec4fbfc579"
+    },
+    {
+      "path": "docs/IMPLEMENTATION.md",
+      "bytes": 5256,
+      "sha256": "3e477a62dc263c06df46635e4ad5e045eb0eaa788140f00664b350232a080473"
+    },
+    {
+      "path": "docs/METRIC_EVIDENCE.json",
+      "bytes": 125056,
+      "sha256": "685cd40b013175a250e75a3717fbd288a3daf0947990dc7103207e3829341745"
+    },
+    {
+      "path": "docs/METRIC_RECOUNT.json",
+      "bytes": 2067,
+      "sha256": "b450ad2e6059af6c0cbc216813ae22b8588ae86761e7707e5466233f59d52779"
+    },
+    {
+      "path": "docs/RECOVERY.md",
+      "bytes": 3545,
+      "sha256": "465d415734585786c2ecf84f7b3dbd7e7a999ffc4494e1ba3cf13173251c007d"
+    },
+    {
+      "path": "docs/RUN_INDEX.json",
+      "bytes": 15399,
+      "sha256": "4334c78a1391bdd06fd9b89f1debd3427e903b606a5ededadc311be0ec63ad42"
+    },
+    {
+      "path": "github-issue-agent/.gitignore",
+      "bytes": 69,
+      "sha256": "b33c0c7654d1bf0be4758adf88527e5e9881b6ee76355fca929c4bfa6eaa24f5"
+    },
+    {
+      "path": "github-issue-agent/Dockerfile",
+      "bytes": 523,
+      "sha256": "bb88649d8e0abea895c3e11d9887130a4029443dc743cd9b6cb582672d08bff2"
+    },
+    {
+      "path": "github-issue-agent/README.md",
+      "bytes": 6239,
+      "sha256": "eb3db3ff698d5e4a646b797838accaccfef0c463337dd3552d1927292a1e6fc8"
+    },
+    {
+      "path": "github-issue-agent/agent/__init__.py",
+      "bytes": 35,
+      "sha256": "72dcf0479fd20092806618132cf07a9ed63c5ddc48c717e8f521b0bdebaf56e0"
+    },
+    {
+      "path": "github-issue-agent/agent/edges.py",
+      "bytes": 1891,
+      "sha256": "9e24e8120170bf50a1faae56db3df86ce8ee730f8b0346458d37fedf8cbf0be2"
+    },
+    {
+      "path": "github-issue-agent/agent/github_auth.py",
+      "bytes": 3579,
+      "sha256": "3182f099aae831cb08f98f56bef47beefa109c4a833d52b77b49a1a52e1ed90e"
+    },
+    {
+      "path": "github-issue-agent/agent/graph.py",
+      "bytes": 2090,
+      "sha256": "a7e0fd76c71a7d7e68d565378aab41b581b0c40ebc3bb530b1fc71c57fb9ad31"
+    },
+    {
+      "path": "github-issue-agent/agent/nodes.py",
+      "bytes": 23174,
+      "sha256": "62d75bee78e4c407e96f16cd32ba072d20794f8f492ca5a04548c7d24e509bb9"
+    },
+    {
+      "path": "github-issue-agent/agent/state.py",
+      "bytes": 796,
+      "sha256": "03227a86e5ffc0494d15341cb3029c0e21af746074864cf5e58f3c059afa050d"
+    },
+    {
+      "path": "github-issue-agent/agent/tools.py",
+      "bytes": 8126,
+      "sha256": "98b5bfeaaaccfc8c42c74a3b3c8a45a9347659fcc867b46d322fb98347735b3d"
+    },
+    {
+      "path": "github-issue-agent/agent/workflow_state.py",
+      "bytes": 1041,
+      "sha256": "51d69df0bf8a26f77e3916fa78812f35ff36c454ecad227e17bea11053f36505"
+    },
+    {
+      "path": "github-issue-agent/docker/Dockerfile.sandbox",
+      "bytes": 309,
+      "sha256": "21cdf74d762e0d6c02c6d0bac0b8022548fc99c12e612ca1d1a0c7a872b94aca"
+    },
+    {
+      "path": "github-issue-agent/main.py",
+      "bytes": 4492,
+      "sha256": "bebee85e0797eb66c1d8935837f6f6c0047927c9d7635099cd8ab3443c22a2fc"
+    },
+    {
+      "path": "github-issue-agent/render.yaml",
+      "bytes": 185,
+      "sha256": "bb3c336a06ff39aa60b503530699a1eb1ce0778951266b309cb92fe71d16ed0c"
+    },
+    {
+      "path": "github-issue-agent/requirements.txt",
+      "bytes": 244,
+      "sha256": "032f377aed9293b7fe8afdb202640a891a57569179564f40db9dbb9aec7392cd"
+    },
+    {
+      "path": "github-issue-agent/server.py",
+      "bytes": 7822,
+      "sha256": "28dd98f68ec822a93596fb03306047a8cac1f8f550cc3dd96873f2e5fea5d5e7"
+    },
+    {
+      "path": "github-issue-agent/static/app.js",
+      "bytes": 14400,
+      "sha256": "6d23c28801078a0cd6aa9b2918933e2ffcab3b509ee64d111b48a1f580a6fd53"
+    },
+    {
+      "path": "github-issue-agent/static/index.html",
+      "bytes": 17387,
+      "sha256": "5b6821de59ce01bd26797ac293dd2f80914ef70b012935183d8289349b18ac63"
+    },
+    {
+      "path": "github-issue-agent/static/styles.css",
+      "bytes": 14875,
+      "sha256": "d1faf3b71e2f91da1afd7baad77bd25b150ef747cc47b8707c48d7dffb9f36e2"
+    },
+    {
+      "path": "model.py",
+      "bytes": 7065,
+      "sha256": "6401ac4e4d1840b0f2d68097d735183f5eed3947dde994119006b68df7413a79"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/AUDIT.md",
+      "bytes": 7937,
+      "sha256": "9dbc0ec8ace4b2fd496492482705d78297ce19fb1154e1b3a988cd9965c8bad3"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/EXPERIMENT_PLAN.md",
+      "bytes": 3599,
+      "sha256": "f0f024bf628e96c410224deee22b5e282b8be824dda5ede0a105f03a141cbe49"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/V4_PROTOCOL.md",
+      "bytes": 5812,
+      "sha256": "6297067b6946b6639722a1ef66c6dc8ec169c8274e254c5881e798a1fe1de724"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/_efficiency.py",
+      "bytes": 1105,
+      "sha256": "976da4b9ca807cbd652c2595d61841a4e2282416ca1e3aada6234ac84d5fba05"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/analyze.py",
+      "bytes": 10178,
+      "sha256": "06caac9cc3c9f711ac5b31ca45b4c4cd72752c0b1431b983c0bb64b46f3a1831"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/baselines/baseline_a_single_agent.py",
+      "bytes": 12942,
+      "sha256": "34905d21ccac9cb4d67eff8d7cb447c5d9669c8f6ba86d1cfbb7511936d6d63a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/baselines/baseline_adaptive.py",
+      "bytes": 58677,
+      "sha256": "46c866b196cad9a3d85695a8676d34b1643fc2be8135b4d3fbdaa3716fac00ae"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/baselines/baseline_b_single_retry.py",
+      "bytes": 16855,
+      "sha256": "45ba4537a9dc2f0ef933bb4441e2db77cb893df5d97f46f7d71a7dd1180f0bb6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/baselines/baseline_c_multi_agent.py",
+      "bytes": 18106,
+      "sha256": "a80a4ceb911d01e6e40de73ff0a4ed4d3f6e235e4eed32087a9b0251d0ec573a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/build_fixture_repos.py",
+      "bytes": 3401,
+      "sha256": "d852dbf334d97e812e43a68517c20d8cd8a42b331f032bd820c411393b20ecb2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_001/README.md",
+      "bytes": 178,
+      "sha256": "af4de80a94fede45aedf8da55c9475257f1dd3bdfe2ee65cebadeac897f8fdd6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_001/issues/1.json",
+      "bytes": 833,
+      "sha256": "00e073f109b74194b234cf5a503d588f6709d7ab8a6f78575788fbd72a240574"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_001/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_001/src/calculator.py",
+      "bytes": 586,
+      "sha256": "aab54df42d6681852a03b72461d0a527ad9a3e1465c7eb16b2460d2e1091ed4c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_002/README.md",
+      "bytes": 137,
+      "sha256": "94417c4b68ffd63e96bfdcefb252db9c49dfc0847e047670967dddb799bd4c9e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_002/issues/2.json",
+      "bytes": 820,
+      "sha256": "6837f81a5a16ae80a7390d7652cbe00e0e2b6c523c36b679cc3af21840e86d0b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_002/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_002/src/user_manager.py",
+      "bytes": 1183,
+      "sha256": "a12d45a4ee7fa902088ae368da7cfab48b73d46869ea15d9633ecc618e1735a8"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_003/README.md",
+      "bytes": 118,
+      "sha256": "e6e5d06519520174b8fb8aea2ebc67984ba6928e65d5beec5d31ece3364e6dbe"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_003/issues/3.json",
+      "bytes": 909,
+      "sha256": "289c750e8aa841243f7b9f911a148af17a184076477d60ed8f02a3d524443747"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_003/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_003/src/shopping_cart.py",
+      "bytes": 897,
+      "sha256": "b1641fa02708dd083313f88689a0c05bad5f90e34c71098191aecb4f5b03919f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_004/README.md",
+      "bytes": 140,
+      "sha256": "cda05d543c11a650a6636c006231a0608c9853fa0737e205ee693c6206739b0f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_004/issues/4.json",
+      "bytes": 837,
+      "sha256": "0cb0bc1b2f94eb7d85e320dba5136343b352e451f697bd67a0292a4cdef9e4c0"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_004/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_004/src/string_utils.py",
+      "bytes": 696,
+      "sha256": "5ca2721e172489d6d95ff841076345d7c54d9b30d067ff3c9d0f327be127badd"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_005/README.md",
+      "bytes": 144,
+      "sha256": "7cb95e7c490a1e3cc3482885f24b4bb586875daeadd2593469df4df75fa636b0"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_005/issues/5.json",
+      "bytes": 866,
+      "sha256": "4b10e397ab7bb532799c5d522473fee723580309904df70549fdb0f12f85e03f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_005/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_005/src/bank_account.py",
+      "bytes": 1420,
+      "sha256": "8c68548af249a502a3f7d5a1626ece36c761db380900114e7f43b90a32cf8170"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_006/README.md",
+      "bytes": 147,
+      "sha256": "e421cb7770483429722c52b0a8195730696f2da38f7499ee4a9eff0c8f2a1a0a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_006/issues/6.json",
+      "bytes": 772,
+      "sha256": "5c320f409eb3173a79013678cc5f4ae09e3a225b9620df88b3afcb20cde99f01"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_006/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_006/src/inventory_manager.py",
+      "bytes": 731,
+      "sha256": "895764d4780351bdeee4a1ec5b9b41a81b5c4d5287380f2e663b609aa278d1fd"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_007/README.md",
+      "bytes": 179,
+      "sha256": "946243f95554f8a333d691b803d63b14aff64ce0c685b04257510683ce3aef9f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_007/issues/7.json",
+      "bytes": 731,
+      "sha256": "cd971970520df050668956262071fdcdc3f6b982390d6b70dac453994f02d74c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_007/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_007/src/date_utils.py",
+      "bytes": 622,
+      "sha256": "dbe9a7739d01d268b3a5bf53d3db6115436df8c273170b96a502c2e18af906fb"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_008/README.md",
+      "bytes": 170,
+      "sha256": "dc72d460dda4bc452a719bdb244c40ad5561c396d19936f69a6334d2d0e345e9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_008/issues/8.json",
+      "bytes": 695,
+      "sha256": "887fe8a5bdf997611dd362cb5b5826b7ecdc7b6ab795681f7060c6852e184f0d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_008/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_008/src/csv_parser.py",
+      "bytes": 489,
+      "sha256": "8ea03a46db147f4b2e154707d8121b7722dbf3c129bdfb8e17617b5a1a1683b7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_009/README.md",
+      "bytes": 175,
+      "sha256": "3fdf0a589d2371e986407289d0729130c897255173d3a3df8d4c549277fa10f6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_009/issues/9.json",
+      "bytes": 716,
+      "sha256": "c1e3d2b4849d92b1aadd94f41353740e335aa24c4d21b3f5a1e1eb0252616b2b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_009/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_009/src/matrix_ops.py",
+      "bytes": 448,
+      "sha256": "11762f29caa182c12ac9479f94f054e2e9035492a380578cb8b6fbd9f17c759e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_010/README.md",
+      "bytes": 152,
+      "sha256": "86fcea409b5aa9c4f60d9801a0107c325eb258c0d21c4531fa57740dc16408e1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_010/issues/10.json",
+      "bytes": 734,
+      "sha256": "633b664ef1573066111b57672f302e4a9e51def0397fd4e9812a7556451dce83"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_010/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_010/src/email_validator.py",
+      "bytes": 349,
+      "sha256": "b9b0d75b04f22759ce3829ad49281e194b37e08f143fe78e74b35975c2dd2fd2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_011/README.md",
+      "bytes": 164,
+      "sha256": "ef6f38ff3955793879aac8843743f9b3c7e2676d86bebad3e2a2324a6131747f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_011/issues/11.json",
+      "bytes": 605,
+      "sha256": "4c4d3d826aee625d8c6bd363491c68be61768611f6c3c651a5c8992ff89dbbdd"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_011/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_011/src/temperature.py",
+      "bytes": 323,
+      "sha256": "63034dd101e2a67e73b05254bc0c656f60ee26df2cee38a37e24d5f943649d5f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_012/README.md",
+      "bytes": 180,
+      "sha256": "866ca49d5159e3a6799b1bdf33b00d1fcdad7d442ff37b32a781d2ee3ec30712"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_012/issues/12.json",
+      "bytes": 659,
+      "sha256": "c3788d7768f5cae519300f0c0145c07f5ccde974cecc1df1c191fa4a77e2460b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_012/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_012/src/config_loader.py",
+      "bytes": 529,
+      "sha256": "c1da7cfe398673138abf00d4ecd11f8389c6886b5d3fb92b50bb170f4cadb4ff"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_013/README.md",
+      "bytes": 184,
+      "sha256": "e7a4ebb4ded85b8ceb9b33609a4829330a5e3de73650a72f796fd45935de4211"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_013/issues/13.json",
+      "bytes": 722,
+      "sha256": "eb371a6ae62b5447b5fb376e558ed8d4b98e5d8a959369c6f10080ba542322ca"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_013/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_013/src/text_stats.py",
+      "bytes": 477,
+      "sha256": "41f2aade785c27da628cda6a3f07e6270ef3c6366a526778ab76a93c3cf72b50"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_014/README.md",
+      "bytes": 166,
+      "sha256": "9f1587042794765ccc130eb30a4368847010e5f105aa484f40e3f141f37eacea"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_014/issues/14.json",
+      "bytes": 626,
+      "sha256": "9c4415f9bb7eb373dd2af928e1e28271ea7e6c0ff7b730a3a0b94a587e293e6d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_014/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_014/src/queue_manager.py",
+      "bytes": 433,
+      "sha256": "51ed076bf86c7b8f5fc2e8abab3092d7b581e9d134198572f0bd3d83d6ab7131"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_015/README.md",
+      "bytes": 148,
+      "sha256": "9c59d618dbc89727e8204431f56a5a3785e912d16b2c44924af2028583a08e0c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_015/issues/15.json",
+      "bytes": 674,
+      "sha256": "52d75c8ee82908bf2093dcfa8da64be53563c85ab12bf64cd2742959eb6828ed"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_015/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_015/src/pagination.py",
+      "bytes": 586,
+      "sha256": "ac274850d1631fb1e1c352ab828dbc4b2a00a246a9c14b6eb9d8e990fa54b83b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_016/README.md",
+      "bytes": 179,
+      "sha256": "a1b8f29190a0f6436b63fff98755eac37e8b68a77cf880d1fdc2bd80deff2fda"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_016/issues/16.json",
+      "bytes": 767,
+      "sha256": "fab8d679d7e40b0f37e850ca38083c629846ed7aa7188b82b9cceaba72500aa3"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_016/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_016/src/file_utils.py",
+      "bytes": 661,
+      "sha256": "b2b60e578d5f97898ec0149e17ad096ef4145f1005fd75e635fd3ccab8f18d4c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_017/README.md",
+      "bytes": 156,
+      "sha256": "b3899f03a9b688885fe99920650b8aaf52438e9e58da2fda61293443fa1cdbcc"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_017/issues/17.json",
+      "bytes": 758,
+      "sha256": "1645cdbd2118802a86b59b989d36f8bf7fe67f8bce532a46964536dea6c35e88"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_017/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_017/src/api_client.py",
+      "bytes": 719,
+      "sha256": "75f3bc56aea1e8b77eb3bd8273814dcb006f76a8ba8658ff40a281beaacbb2fc"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_018/README.md",
+      "bytes": 160,
+      "sha256": "128093864b9aed88af92e7c6854e84982c8a07d7b764dfa6c0709d8435fdbaa0"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_018/issues/18.json",
+      "bytes": 652,
+      "sha256": "bde43c316d95882781115d17c50b7b71355a40c2f4b64080209f4b1546b235a4"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_018/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_018/src/session_store.py",
+      "bytes": 1108,
+      "sha256": "c12ecdf830b1e4dc688c42fe35be5634c9dc3963a6d1678d6d97689e36f44996"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_019/README.md",
+      "bytes": 177,
+      "sha256": "6817e1f62baf8a7683b427a8fd7017fd059f77c9106b3d551bec49e49dc52d2a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_019/issues/19.json",
+      "bytes": 753,
+      "sha256": "4472c5d4ca0ba3485dd526905fd59807f06a682688fbd7ba3782681d07375c8c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_019/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_019/src/data_transform.py",
+      "bytes": 660,
+      "sha256": "a9f69246eac25ffbc9d254744df93d449867683f63ebdf2c88f591bfbc540a39"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_020/README.md",
+      "bytes": 160,
+      "sha256": "a273933fa4a66622f68368ba9befcdfce6346252a09f52d01dc77f82ec8efd48"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_020/issues/20.json",
+      "bytes": 655,
+      "sha256": "07df22582fd0e88cea6fc66954ba2433c423a8dc61951410a2d5a9ef38d90d56"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_020/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_020/src/rate_limiter.py",
+      "bytes": 512,
+      "sha256": "5df0e992601dba23de52fbb935b2910063d63b2082c48b8f6215545492c27712"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_021/README.md",
+      "bytes": 159,
+      "sha256": "28037a9aa1799ef7e99dc73cd302d76020e3d4ca4aac92f86c964cf2ec1051f1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_021/issues/21.json",
+      "bytes": 664,
+      "sha256": "c83209d96a70782e27ba8ea4a2f557ab05bce581dbbb787392c2eaa33deebe8d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_021/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_022/README.md",
+      "bytes": 160,
+      "sha256": "ded12ff15306f964a8003aef39aa73ee144821bb56d241575c5931501705ff6a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_022/issues/22.json",
+      "bytes": 712,
+      "sha256": "21055badadd1f3ac64077863f413832195c67a96416f02a7db8033f52aa82ec5"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_022/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_022/src/feature_flags.py",
+      "bytes": 910,
+      "sha256": "224a6f8603672e1f553de897caff959e2adb68b915f0a7a2407901be70f44a45"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_023/README.md",
+      "bytes": 151,
+      "sha256": "7b65ea2ceb82a52276c0b2f60e5f5ad81b6862c2c26fad85fddde642df1be606"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_023/issues/23.json",
+      "bytes": 721,
+      "sha256": "cd33436e81fdfdac3414e7cecab9a092dd415658217734bf7ed2c5784495b557"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_023/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_023/src/json_flattener.py",
+      "bytes": 1241,
+      "sha256": "ac652b5f5748da007ddead6e45efa149c9da89d706a097eac29a39cb227d232e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_024/README.md",
+      "bytes": 149,
+      "sha256": "7542224f51ac81002155121901ddfd923c8222ba854690209f9642469a1710ac"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_024/issues/24.json",
+      "bytes": 672,
+      "sha256": "41a959c2ac72d31691d73dcc49be64b4de525605e2ea9a0da9ce4d0553d826e7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_024/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_025/README.md",
+      "bytes": 144,
+      "sha256": "7b97c84001d8b7b6301d23b9685892a83a37d1bd85d33278ac239c9f400c2bf8"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_025/issues/25.json",
+      "bytes": 658,
+      "sha256": "cd6b7f399de36a4c4e31980bf522b4cf7d5459dcbfa7ebd7dc9bc65f5c6aae90"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_025/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_026/README.md",
+      "bytes": 172,
+      "sha256": "b5f27b40578e8bd6f619c7fc30c7f9b00095153ed06b73d3573d7eb9584a36cf"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_026/issues/26.json",
+      "bytes": 632,
+      "sha256": "b34fbec05052cbaa7da08528cbc4349f7106a4246722585e2fc14db4bc608436"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_026/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_026/src/statistics_utils.py",
+      "bytes": 666,
+      "sha256": "a19cebd05cc04311ad255e845e62228e97ca958fb4da1a35c98408405dc488d3"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_027/README.md",
+      "bytes": 165,
+      "sha256": "9e9f78da6faaa15680966869db29ffa2d6e4fe8e67d366505a81727188966a98"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_027/issues/27.json",
+      "bytes": 771,
+      "sha256": "fbecd7fa06931deeea61a1735519c2ab8167f706120db14e16dfaaf6cde4316f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_027/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_027/src/path_resolver.py",
+      "bytes": 534,
+      "sha256": "abf2f1c60fde9a0e2ff29b4281c0ae6b7881b2cfc43022a90c253c433afc1c05"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_028/README.md",
+      "bytes": 180,
+      "sha256": "5a9f61c500b1d7a659eacf58b149fbcf413d2758892c287119e12cb80a302f88"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_028/issues/28.json",
+      "bytes": 693,
+      "sha256": "7a2fadc4c2214f8c32e152083a761828d3d0e98b446612ea6867403602c4ace7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_028/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_028/src/retry_policy.py",
+      "bytes": 642,
+      "sha256": "9d93a0849206bd489d18e882a9192a321c39ea2026677ae70b4482584132213e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_029/README.md",
+      "bytes": 163,
+      "sha256": "597bea010c72c1f7aa6c0b79cd84ad94d130b3abfb85d2a05f99906abad43b3d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_029/issues/29.json",
+      "bytes": 699,
+      "sha256": "c7bbf7be425e6bceba89f6ac695f3fd228a6aea48d42b2fbbf65122fc2d126f1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_029/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_029/src/interval_merger.py",
+      "bytes": 757,
+      "sha256": "2f1a5ad7622acc33f6bf0d24f6df5dc26def4d0d4f253d0d70bebe992c41573c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_030/README.md",
+      "bytes": 182,
+      "sha256": "ad1b6c85b232185cd9275d5f7c613ba5a958f4a7d59e1c6e011d7af99d617432"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_030/issues/30.json",
+      "bytes": 679,
+      "sha256": "8d9b57acdd131c1945102dbd48c8ddaa34a7ed2e1c0ad6d88064a0d5fdf11738"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_030/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/fixture_repos/task_030/src/ini_parser.py",
+      "bytes": 820,
+      "sha256": "70f458518b6bb2b1ec57191beffcf3c55474bb72da6ce3eb1d083d4e9cb9f98c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/generate_task_artifacts.py",
+      "bytes": 5351,
+      "sha256": "335e8817490f3272615a5b330300abafcd5ebb164e1210770ba43ee997374e3a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/generate_task_files.py",
+      "bytes": 5259,
+      "sha256": "a3bc70efca4cdc54a1936dd913b4c30a0300dd89a4a86bd1823250cfcea14592"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/spec_loader.py",
+      "bytes": 1728,
+      "sha256": "0741062f179601f4c7d56aeb04b99c07f310b25fa0df783962ce86696bfe9313"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/specs_new_1.py",
+      "bytes": 26709,
+      "sha256": "5ea1c6c7963a13f6dcd8360b1bea90893895a3c0b65feb78f2ae526cbd630d49"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/specs_new_2.py",
+      "bytes": 30610,
+      "sha256": "8e4af2e5356013bb3fd2272628f15631aa79e9f7f6783d7178c72dd01645a40d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/specs_new_3.py",
+      "bytes": 28860,
+      "sha256": "4d1ef4ef07e9eea2b459d64ef82c433b655e4342f231b900a4cd6dd3e0673d47"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/specs_original.py",
+      "bytes": 28502,
+      "sha256": "42060c6d7001d8ef69cee0e5b174d255e9516526b8c794237e724dd92910e2f9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_001_calculator.json",
+      "bytes": 2281,
+      "sha256": "99c714bf19335e5e7ea5b1269eaf97e5a1fd061146a8f93977367fd59c28a495"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_002_user_manager.json",
+      "bytes": 2260,
+      "sha256": "75ea5fc65ded544cc3f19ce51fde30f64fa7f4b65e44bd795821e4dd81f7fdac"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_003_shopping_cart.json",
+      "bytes": 2534,
+      "sha256": "5dac38937cbd97d46da2fe18ea6b4fb78f6b0a3ad319a550071c6daeeced26e1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_004_string_utils.json",
+      "bytes": 2580,
+      "sha256": "fb8ba3bd18a7b98761c6a1cf81c16046801080bc2adc5327efb75d9530ca27d8"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_005_bank_account.json",
+      "bytes": 2712,
+      "sha256": "e58c31087bb67028cd4df5fdc377f8ee9b3153f180addfd54adf9f46a2b82344"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_006_inventory_manager.json",
+      "bytes": 1635,
+      "sha256": "9a07f7738bc77211e7c95623e45f079bbc5f04a5ed9ba91d55f648eca3ea5420"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_007_date_utils.json",
+      "bytes": 1569,
+      "sha256": "fecf748f08df9f620a90212d2e3b45d330281d54025a546eeef32e09edc00c92"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_008_csv_parser.json",
+      "bytes": 1493,
+      "sha256": "4616ff3373388bdfd6546b1cec965c347a5b68c61d999f3ed45db4b3cf121013"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_009_matrix_ops.json",
+      "bytes": 1484,
+      "sha256": "35e2bfd36a8943b0af8cee84c5f52f09056493d6a4f8291c76f936fdc053da7d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_010_email_validator.json",
+      "bytes": 1531,
+      "sha256": "9a0323d9d743e48215214e19ff2ffc033d08be29c3ba0cb26ed11d3cfe7c7131"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_011_temperature_converter.json",
+      "bytes": 1392,
+      "sha256": "444b03a3c2181ec5d0e4b8f2addc6b4307a931b64b1f8bbdfb1acb8ecb5077a2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_012_config_loader.json",
+      "bytes": 1469,
+      "sha256": "292368165207b78aa087cfe3f5fa4176d13879e584971cee5947662a673b12f2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_013_text_stats.json",
+      "bytes": 1557,
+      "sha256": "fdba5a088bdd12feb9c295a73cab518c41b7c01269b085ab9395c2ab584fe84d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_014_queue_manager.json",
+      "bytes": 1416,
+      "sha256": "be27a0924c2b9a3da1ade1e44353ddd7d31f24d179d6f6c6dbb29c61003354fe"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_015_pagination.json",
+      "bytes": 1448,
+      "sha256": "9ffcba5a36d88e1fcb736bb1e77ff06959c7bdd4db4c7b734cb372f99893528e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_016_file_utils.json",
+      "bytes": 1634,
+      "sha256": "4c5bea52ef5394703ebae6c1cf2aa5fbff17e47a6ca098b4f4feaf653aaa5db6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_017_api_client.json",
+      "bytes": 1542,
+      "sha256": "fe583a1c9d6812a14aa209f24c19e10286e9e005936236601ebc6cb0c836851f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_018_session_store.json",
+      "bytes": 1494,
+      "sha256": "ab92b99b8ea8b840b93105895af1956916792275cf04aff6e55eca0f5b3291fc"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_019_data_transform.json",
+      "bytes": 1604,
+      "sha256": "382f350a8584f37b157301991d61d3fcf5b2871920a2e452663290378463f3e9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_020_rate_limiter.json",
+      "bytes": 1430,
+      "sha256": "aaac243e4ec99a97bd5672c760c26e97db921a24556e5d16b6a1e274fe8ca6d7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_021_ledger.json",
+      "bytes": 1430,
+      "sha256": "de3808a37b28ee76a4fdd050fdc35774579434e923178ae6f55424ef5ef07ba9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_022_feature_flags.json",
+      "bytes": 1529,
+      "sha256": "673d5f0edfcc8730f2b103886793611fda323c2758c531842fe944cc901704ac"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_023_json_flattener.json",
+      "bytes": 1522,
+      "sha256": "59bb72db656792323414fdb7c23bd74e91a9c19aaf637f1212f58bd60e45d774"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_024_lru_cache.json",
+      "bytes": 1429,
+      "sha256": "4a7e3bb582c014dc03e2e3d97e4a0a4d5f939347fb4679d471c4addc4a3b8143"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_025_slugify.json",
+      "bytes": 1379,
+      "sha256": "7296b7c2238dda4a14041273d38e65dc2cb4bab8496699dbf61f402b48116bc1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_026_statistics_utils.json",
+      "bytes": 1440,
+      "sha256": "a3a57eb102b31c0dd1c7fa12678d085cdfe50ef1be442f932d94ab7630949657"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_027_path_resolver.json",
+      "bytes": 1629,
+      "sha256": "d5ac0716e83f604f86c41c51a7ab288f0449223d03a66f4c903fdfc46f8301be"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_028_retry_policy.json",
+      "bytes": 1486,
+      "sha256": "884cfae3f97d1cd1353ee9d3814194a2d12f92ba0e5ed77499ff3842801e34f8"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_029_interval_merger.json",
+      "bytes": 1516,
+      "sha256": "33434b9e032e163d9618845576d208f95ad97abb05cf6d4b92eab0cf9796d26a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/task_030_ini_parser.json",
+      "bytes": 1526,
+      "sha256": "d944f7e2e80dbe982b5f12b863a8db746b175a83cd8c5de9c5fa7818effd1309"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark/validate_harness.py",
+      "bytes": 2703,
+      "sha256": "7e4d57e889f39d3a8861d25356104fc6cdd356e6314da1a645a4cbc921b3dcc5"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/benchmark_input_manifest_sha256_20260909.txt",
+      "bytes": 22448,
+      "sha256": "a8c5461759c991aa9778f3126d0f73c8293dcf9cbacc667ca276d121f70e9393"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/build_ledger.py",
+      "bytes": 31290,
+      "sha256": "aa486359f62a0463dff7e3511b8f1bc8c9f3e43678806aa24f37694022c29ea2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/configs/benchmark.yaml",
+      "bytes": 3865,
+      "sha256": "abc4d08d6c053709c4efb4b5b98face43c909d3acf0884f6221efbce05fc4864"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/configs/benchmark_adaptive.yaml",
+      "bytes": 2321,
+      "sha256": "728e380717a9367819c83164005a8dd9bb113b1a985e38fed4cc94a731f6ca86"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/configs/benchmark_v3.yaml",
+      "bytes": 1947,
+      "sha256": "9c9b79ebe72ee6a0820bdf9c04cd44721cc7e60bb3dacff0d23c30c624eff86e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/configs/benchmark_v4.yaml",
+      "bytes": 3877,
+      "sha256": "10fcc4e3ea0d718a938f0f340d923eb27ac5f5879e6b0a2ed293caf2aa615903"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/fixture_router.py",
+      "bytes": 3959,
+      "sha256": "04a655b38ff0b0514a4acfceedc05f555ed6359822ad74687e7e38cf5b441b0f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/conftest.py",
+      "bytes": 4942,
+      "sha256": "3168a45a0bc285853ca5474feddcd5ac1eedf3f6badd4c69d16118ffb928b4c4"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_001.py",
+      "bytes": 4653,
+      "sha256": "399d51e26444c8e61124f1f36b6f47ba08ab36bdf8fa4c972cbbf62e26263d1c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_002.py",
+      "bytes": 3985,
+      "sha256": "50317fc1006bed80302b985f7492ed1fd14d8c6bc004311e647b85eb4af491e7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_003.py",
+      "bytes": 4845,
+      "sha256": "b7f72403fea7fe5907d30b923aa96c7412b86ff7365b63e13a67f1195d006c61"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_004.py",
+      "bytes": 4223,
+      "sha256": "5f11a215408caaee0d65d9aafc46a6eb0bf539dce9b497a47c4f1d966516cbe7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_005.py",
+      "bytes": 5146,
+      "sha256": "7fd4ee3ddacb8c21d4371f2c6d77ac88c46eab6e9c25cf24aec6460f2bac8dfe"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_006.py",
+      "bytes": 1608,
+      "sha256": "e15d4b2a2aed0e2f1833e43c42a29cbae03f74ad641f4965451ad9170f580fd2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_007.py",
+      "bytes": 1607,
+      "sha256": "1e01f5ea670da573e0cd2440c844909557e3a8d4fd3be60fc1977a470d4a3732"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_008.py",
+      "bytes": 1439,
+      "sha256": "a9e65e2fb32bd05eb11f453e4cbef124c800a7146afa871cc2bace8506670443"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_009.py",
+      "bytes": 1305,
+      "sha256": "b7a3be2446b541713a49a624ac33fbbcf36ee312c6f1d02f15495ae69147f2cb"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_010.py",
+      "bytes": 1432,
+      "sha256": "5d2142a0a7a310ecd364802cdcf643d30be2198c0266cbcff77b963c1807c9cb"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_011.py",
+      "bytes": 1411,
+      "sha256": "04a6218fa050188f37233e6eb88d4c42b93eff65a19d6de04773848ea915ad5b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_012.py",
+      "bytes": 1500,
+      "sha256": "4aa7edd5fa3f585166b18351a7990dc141331b37a27d3ddcb3f589bd9d25100f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_013.py",
+      "bytes": 1348,
+      "sha256": "fd8195cc003e1d938b97004bbaf07f1168b85f62c66addcf5b8cb1cbe3913936"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_014.py",
+      "bytes": 1427,
+      "sha256": "0b18f236bc2d338f0ba7673de9068e14996cc55c5d16177b5ad181c18ab0a494"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_015.py",
+      "bytes": 1472,
+      "sha256": "25477495649249c9a143bec21c0b9cd06711da54ad054f9fa2eaf68f77b698e7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_016.py",
+      "bytes": 1903,
+      "sha256": "92f61abf73f31ee77259c995afb0d094ae97ab05cf6826b866bfab846f705de2"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_017.py",
+      "bytes": 2009,
+      "sha256": "ea435bc02f83cf5bed39ffd0ada6e5bcf7d7b22883de6d622e4dcda8a3a9a287"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_018.py",
+      "bytes": 1748,
+      "sha256": "a07bea391852ca1a2bc77f5748733bf9b7e02581ff5fb150272f4e4c13af8c9e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_019.py",
+      "bytes": 1478,
+      "sha256": "4ee363d720f1e3785ee8781a8e44f7508fe66e437c8081b8e1ef956d94ef40f9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_020.py",
+      "bytes": 1835,
+      "sha256": "d97e5cc179137ba7fb6a8fe532d13beeaed1d3a4d8749081508d627ab495e5ca"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_021.py",
+      "bytes": 1682,
+      "sha256": "538981b9c10e24c75202c8dc6208c6689dadbbd8bc089387b0c6224e1db2e14d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_022.py",
+      "bytes": 1861,
+      "sha256": "dce4b41ff0fea1a6055546524eafea808c2ffbab0abac9aaa0e242d85b0fab69"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_023.py",
+      "bytes": 1590,
+      "sha256": "97e8c01fc00eab78fee3471de8ea42f0f32a55ef32e5bc5a83e1f3f8aa6d906a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_024.py",
+      "bytes": 1787,
+      "sha256": "7160f2f87965c52bd253c30d6f9035a4b1b52a5ca46beb8d6a0937d5bb33ce11"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_025.py",
+      "bytes": 1389,
+      "sha256": "751f348ef39c85485ffcaafe457b39a28b5f22d9bee1bebacee97c34f14d5445"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_026.py",
+      "bytes": 1523,
+      "sha256": "8afca78756b5824798662946c372770803cf473f47f64147a0776364ac645c47"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_027.py",
+      "bytes": 2056,
+      "sha256": "8233dd1c75a731162ec5e8a269e69d3ef434da0451f15b30b33c67d1297805c7"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_028.py",
+      "bytes": 1703,
+      "sha256": "752f35039c8ac77d5f2877e6cf17a080ddc5cca543474d2565fb30ff133762ca"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_029.py",
+      "bytes": 1567,
+      "sha256": "4d8d0359f3e6791653ed1359a22601279265eadeb6d27771badcc9aee17ee7c6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/hidden_tests/test_eval_task_030.py",
+      "bytes": 1757,
+      "sha256": "7bca9224f06b456f731651d7dbbbff23a40f6fbb1a815e495b6cd3ad700ea362"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/instrumentation.py",
+      "bytes": 8046,
+      "sha256": "6e3be09132970177be80bcecce82d70dee79c3d15053200c199abaa940155667"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/lifecycle.py",
+      "bytes": 18596,
+      "sha256": "f9298d87104fc7f9162ddfebea03a340feb2dd19acb34c86b09deb2ca6cc9aa9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/merge_arms.py",
+      "bytes": 12260,
+      "sha256": "2249bdf0d890eb258937423bdc92515489cbe6d39afc646867b75e37fe737e0f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/metrics.py",
+      "bytes": 8814,
+      "sha256": "5e655581d58948ad59a97c89c2a482759d496fa7faed972fe45d089baafa3cc9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/paired_analysis.py",
+      "bytes": 8883,
+      "sha256": "bcc5f295edf250fe0905540450cd3827cae77cae8d9bd354a72488d275087bec"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/preflight_v4.py",
+      "bytes": 14981,
+      "sha256": "53508a838454cc1d4911a84c3e67071b5b8cb5101a5e837664fc45f58d1dadc1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/run_benchmark.py",
+      "bytes": 33552,
+      "sha256": "846114bfb3225e74cef2cc0afb2d2770ee641aed47e9e9a08ea2a6f07b8c7625"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/conftest.py",
+      "bytes": 6106,
+      "sha256": "5aa371ba0a8d98ae9b340dccb528d97098e4cc857acdb1489a3de8cedbc6b3dd"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_evaluation_tooling.py",
+      "bytes": 28401,
+      "sha256": "baef57252d663351006e2f75a3759cb07b93733d9faed44dadc6f8a4e049c179"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_lifecycle.py",
+      "bytes": 16938,
+      "sha256": "e18ea770906f9452145291f33cbe48a3041f499f72b0173d8b75ac6057ec5ff3"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_real_artifacts_integration.py",
+      "bytes": 7815,
+      "sha256": "71f392e2a7249b0a3f25681c335db2ed003c7f61f924bd425075dce018b33062"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_v3_regressions.py",
+      "bytes": 12559,
+      "sha256": "fa2366a31ba53122c487ac5300e15dd0e319b16fe352a5a97f17c359d6771b55"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_v4_merge.py",
+      "bytes": 10921,
+      "sha256": "e9f3e0f4924f5193cce42bad4a8b92859eb079dd9fe9dbab3874fcc7912f231a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tests/test_v4_preflight.py",
+      "bytes": 13260,
+      "sha256": "26e9ecfbb399df08fcc31b0278035de9803b52782c55560dd771be82372cd52a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_747_probe.py",
+      "bytes": 923,
+      "sha256": "d668b856fdab25b4a1c7c825998754e476648a4e5070b7e71d724e6ab6a3d838"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_adaptive_v3_20260910.py",
+      "bytes": 15172,
+      "sha256": "104e8dea3d93016db08c43476d6dd8f12ddc0b7ebfd5544855a7aa6a03cee63e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_adaptive_v3_probes.py",
+      "bytes": 4069,
+      "sha256": "666cc84c2931a9247ded305249f6a9fd28fece1342f26b45e1a8fc008f6174e6"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_adaptive_v3_probes2.py",
+      "bytes": 2261,
+      "sha256": "6a7f1c97370b9ddb71f0f0e0cb542e9848442dd9cf6bec4593beaaee313b0bb1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_file_snapshot.py",
+      "bytes": 2307,
+      "sha256": "96a40189cc1b22ea5b0243b3a2caf497482ab572ecda417a7b4f67f1256c534a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_final_report_20260910.py",
+      "bytes": 17511,
+      "sha256": "db24df0066c435ebecb991245d433d5ac919e3e9b28eff71f94f3a1deb9ca104"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_manifest_count.py",
+      "bytes": 1215,
+      "sha256": "989e1181bd11cc6e15bfef4d0868aee503b0427da55328277254eb5f6246ba75"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_part2_20260910.py",
+      "bytes": 5315,
+      "sha256": "9bf946a40ed95d94c366afac996b547b50cd5e9ea5b6958d7d475c22c14b5876"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_part3_20260910.py",
+      "bytes": 5140,
+      "sha256": "0e9477ec040501e29116461597cb3cb0beef728d1db3d5efade3bf4eb6791590"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_postedit_check.py",
+      "bytes": 7554,
+      "sha256": "5ef97d95230e25f3408f380be389fab884ea705ccc30971a03219dfae57ca16d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/audit_v3_snapshot.py",
+      "bytes": 1351,
+      "sha256": "efe2534123832b00ef7385db4385c0b0421759514ad4ee6708bf7e37ec923233"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/build_v3_ledger.py",
+      "bytes": 21042,
+      "sha256": "a08f35a393a238ffb85798095c487a07accb24be0408150c73919163fc562427"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/check_v3_package.py",
+      "bytes": 12722,
+      "sha256": "eca062b198b6d1cc517e299f5f1bf07f849bb39e5ebc9ccccaa8a26c9f9b5d11"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/agent-bug-testground/issues/1.json",
+      "bytes": 735,
+      "sha256": "d6a46f1db237d3d76ff7f1b0075216b0c076c17efd3a38968abfcc8151fca1ca"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/agent-bug-testground/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_006_inventory_manager/issues/1.json",
+      "bytes": 633,
+      "sha256": "5ce2188f71c777b0f230a2d1654e953863eb88d612f39c5a840ca0b495f92754"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_006_inventory_manager/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_007_date_utils/issues/1.json",
+      "bytes": 601,
+      "sha256": "c0bcdfe09ed1faca91163c161d2977f0599bc11ebcb7a0ca3882cac2dcb9648c"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_007_date_utils/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_008_csv_parser/issues/1.json",
+      "bytes": 574,
+      "sha256": "699b5731904bdd036c1e22d4263152ad7ea059735be0332ceb6514d3168eab40"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_008_csv_parser/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_009_matrix_ops/issues/1.json",
+      "bytes": 586,
+      "sha256": "ec4c3616f4dfd16c80d2177b6dd9e7d73f6268b51f8fa25413a3a1523878dfd9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_009_matrix_ops/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_010_email_validator/issues/1.json",
+      "bytes": 600,
+      "sha256": "c1b5f3f7d47d3e7a2d57f0118abaeae9f1fc78fb5d3cc16fc980ac7194fcc550"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_010_email_validator/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_011_temperature_converter/issues/1.json",
+      "bytes": 465,
+      "sha256": "74bf68663d9d03f455249eb7f2f40337af8d81459a4669b2b574bb3a8bd33dfa"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_011_temperature_converter/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_012_config_loader/issues/1.json",
+      "bytes": 525,
+      "sha256": "923db577508a4a5cb303e2cc715a466308350a06f2fa180fec577d1513c8552d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_012_config_loader/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_013_text_stats/issues/1.json",
+      "bytes": 588,
+      "sha256": "0f9bf1df3f30cc6aa2bb823b10a49f4637ce9c596d9868abdd2e995e17ca31f5"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_013_text_stats/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_014_queue_manager/issues/1.json",
+      "bytes": 498,
+      "sha256": "13d0ef24f750f54dbfeb6e1287c3091fdb218b30dbe4353dfe3c02d56ba8f519"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_014_queue_manager/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_015_pagination/issues/1.json",
+      "bytes": 549,
+      "sha256": "0e5f1fc714816399edb343b242cc8de85ecfb6243cdd4503e757fc7336146bac"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_015_pagination/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_016_file_utils/issues/1.json",
+      "bytes": 643,
+      "sha256": "4c8b428c2085747ffbfdaf3be2b29bd4717d8602e32c3697559c0b3f2873edb8"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_016_file_utils/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_017_api_client/issues/1.json",
+      "bytes": 633,
+      "sha256": "bad16b7fe8046da5488609b7fb56e890f6d6f845d8c78e76030250c731991391"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_017_api_client/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_018_session_store/issues/1.json",
+      "bytes": 518,
+      "sha256": "38ba13aafa280f0abbbb0753a89afc1f5fe959439039d698027222bc5f2b978b"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_018_session_store/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_019_data_transform/issues/1.json",
+      "bytes": 615,
+      "sha256": "2e3dcc8120b0004ce1d714f878ad483871725793102f6e9a16b493673fc612eb"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_019_data_transform/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_020_rate_limiter/issues/1.json",
+      "bytes": 524,
+      "sha256": "741a3dfd285d350e4d2748c3f9ec785d8692db89f0b40ff220f78efa320f2365"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_020_rate_limiter/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_021_ledger/issues/1.json",
+      "bytes": 537,
+      "sha256": "a1787586909dbde58e3688f9ba0fc1d3ae9ac8c084b01da3c1ac1a039542c218"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_021_ledger/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_021_ledger/src/ledger.py",
+      "bytes": 922,
+      "sha256": "071822ad317512a12107ccd4f78bf61bb248cd47b0fd7f8e7a64f1c989e10887"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_022_feature_flags/issues/1.json",
+      "bytes": 581,
+      "sha256": "05e48c34387a725a2e1ef45e67dadfe80b3d6d1564f0e605653b6ec97e3d701a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_022_feature_flags/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_023_json_flattener/issues/1.json",
+      "bytes": 585,
+      "sha256": "914765dc81a50f78c87bf41150c966bfd46782f809b70146dc598e5dbae81ef4"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_023_json_flattener/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_024_lru_cache/issues/1.json",
+      "bytes": 544,
+      "sha256": "60c27cb0e6c29d85784c27dcefa54c3240a1f4b08f8bb323c769348838ab42e1"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_024_lru_cache/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_024_lru_cache/src/lru_cache.py",
+      "bytes": 834,
+      "sha256": "d714936892660cbfdfd627c7dc89ca60feb01f15cb439f9d480f7e0b5897dc0f"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_025_slugify/issues/1.json",
+      "bytes": 541,
+      "sha256": "dd80d08725168110542fcefaa92896514a2b9e8914f1f377312d4a7ad0d00d66"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_025_slugify/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_025_slugify/src/slugify.py",
+      "bytes": 398,
+      "sha256": "5af369029316968530c40883211c10af04be7e6700c3567a8e4b452e020b2059"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_026_statistics_utils/issues/1.json",
+      "bytes": 495,
+      "sha256": "0e0ec5f034d6966c09018d4bb3269b60a06eda36665d6e707d07048598d61b5a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_026_statistics_utils/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_027_path_resolver/issues/1.json",
+      "bytes": 644,
+      "sha256": "b6283b4ff0b9cbed539190cc385156fa322a35bdd125dd658299fc303f05da01"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_027_path_resolver/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_028_retry_policy/issues/1.json",
+      "bytes": 568,
+      "sha256": "447f4c210fdc0a7e56effb238fad5a84663e362e6220cbab65a80dfdee123485"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_028_retry_policy/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_029_interval_merger/issues/1.json",
+      "bytes": 565,
+      "sha256": "4ccded0af06e237bf80160f87887e862c5184b5c3aa3ecc8020916479e505b4e"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_029_interval_merger/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_030_ini_parser/issues/1.json",
+      "bytes": 551,
+      "sha256": "fd8aa2eb130e20f8813775726f1ce2302eb7505ee63e126e2e9b9f88f6179b0a"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/tmp/fixtures/task_030_ini_parser/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/validate_ledger.py",
+      "bytes": 14786,
+      "sha256": "1e811ce053851166db78afe46fb7100996fd9d2a0193a54d8cc0a0e1d904240d"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/validate_report.py",
+      "bytes": 8347,
+      "sha256": "c5479551a94976661e22daf3958b4ba4444c7ea28723b92880c3f012273d1bc9"
+    },
+    {
+      "path": "recovered/orcharst/evaluation/verify_manifest.py",
+      "bytes": 6661,
+      "sha256": "8646c2b98c6301bd749aef81c7adfa6b47346eb8fcd24bd8858023726ea036be"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/.gitignore",
+      "bytes": 69,
+      "sha256": "b33c0c7654d1bf0be4758adf88527e5e9881b6ee76355fca929c4bfa6eaa24f5"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/Dockerfile",
+      "bytes": 523,
+      "sha256": "bb88649d8e0abea895c3e11d9887130a4029443dc743cd9b6cb582672d08bff2"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/README.md",
+      "bytes": 6239,
+      "sha256": "eb3db3ff698d5e4a646b797838accaccfef0c463337dd3552d1927292a1e6fc8"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/__init__.py",
+      "bytes": 35,
+      "sha256": "72dcf0479fd20092806618132cf07a9ed63c5ddc48c717e8f521b0bdebaf56e0"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/edges.py",
+      "bytes": 2233,
+      "sha256": "e906c1d9a665b7cb4888a20eef5efa72b48f45dd69a8bb15abf69f7664bdb6e9"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/github_auth.py",
+      "bytes": 3579,
+      "sha256": "3182f099aae831cb08f98f56bef47beefa109c4a833d52b77b49a1a52e1ed90e"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/graph.py",
+      "bytes": 2473,
+      "sha256": "7ea98f5811e0d6f6f7ee332aadb5ce15703193e821649e113d991b211c64305f"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/instrumentation.py",
+      "bytes": 14010,
+      "sha256": "c3e9e070e1ee010e4e5437b64671afe9ff4af56ec515f1941c7fbb946f441911"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/localization_v2.py",
+      "bytes": 20689,
+      "sha256": "0b39ef9a3111204c9d153446d31346ed6f238a6154465a8abb17d838129fa6ab"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/nodes.py",
+      "bytes": 34233,
+      "sha256": "aa40933b41ce67d740053e228d563d01da23628b81f1d853b7749a2431bcaf8d"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/provider.py",
+      "bytes": 10910,
+      "sha256": "a600721ea418555e69b77e975e3ba47adcec0dc196e5e1a4f950e2dc3e65a005"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/state.py",
+      "bytes": 3290,
+      "sha256": "abcc0aa98f1eafd975d673b63dbf1fbb57aa41224d4c63891da880dbd5873143"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/tools.py",
+      "bytes": 13309,
+      "sha256": "c70a2952245fda8670373a0fe683268f41e8330b1f5f9e6d305184cbec27f83d"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/agent/workflow_state.py",
+      "bytes": 1041,
+      "sha256": "51d69df0bf8a26f77e3916fa78812f35ff36c454ecad227e17bea11053f36505"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/docker/Dockerfile.sandbox",
+      "bytes": 309,
+      "sha256": "21cdf74d762e0d6c02c6d0bac0b8022548fc99c12e612ca1d1a0c7a872b94aca"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/main.py",
+      "bytes": 4492,
+      "sha256": "bebee85e0797eb66c1d8935837f6f6c0047927c9d7635099cd8ab3443c22a2fc"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/render.yaml",
+      "bytes": 185,
+      "sha256": "bb3c336a06ff39aa60b503530699a1eb1ce0778951266b309cb92fe71d16ed0c"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/requirements.txt",
+      "bytes": 244,
+      "sha256": "032f377aed9293b7fe8afdb202640a891a57569179564f40db9dbb9aec7392cd"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/server.py",
+      "bytes": 7822,
+      "sha256": "28dd98f68ec822a93596fb03306047a8cac1f8f550cc3dd96873f2e5fea5d5e7"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/static/app.js",
+      "bytes": 14731,
+      "sha256": "165d766ba0418c7b980c9540134800e0affc42a67240b90d9d9d36ea245a2f60"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/static/index.html",
+      "bytes": 17387,
+      "sha256": "5b6821de59ce01bd26797ac293dd2f80914ef70b012935183d8289349b18ac63"
+    },
+    {
+      "path": "recovered/orcharst/github-issue-agent/static/styles.css",
+      "bytes": 14875,
+      "sha256": "d1faf3b71e2f91da1afd7baad77bd25b150ef747cc47b8707c48d7dffb9f36e2"
+    },
+    {
+      "path": "recovered/orcharst/model.py",
+      "bytes": 7295,
+      "sha256": "8a4e06341ca4b7433f63e5937e95cab7b2d2b1225eaff9570384f02e306ea56e"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/README.md",
+      "bytes": 2006,
+      "sha256": "33fc9e9fcaaf17152d3b79ea51fcecaacd35f75bdcd5f779dfd027ffeae9d7d6"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/src/bank_account.py",
+      "bytes": 1833,
+      "sha256": "0d044fe32d0b389fd31cca6ddad960cfc5ed7de07df6f885d6d8d4c44a4b195b"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/src/calculator.py",
+      "bytes": 718,
+      "sha256": "5c0e99f20ad4a0deeaf8de121c9573700f59b0eb17bc9100a0b2e3b0f4f1c5d3"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/src/shopping_cart.py",
+      "bytes": 1417,
+      "sha256": "5e46eb0deaad138e7b4b0e980eae06746dc8dbe858213d74b70acc754fd3d3f0"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/src/string_utils.py",
+      "bytes": 1136,
+      "sha256": "394984632bdb5e0c14baeda532093ead194c4064b9c028ca409c9395a98d53b7"
+    },
+    {
+      "path": "recovered/orcharst/test-buggy-app/src/user_manager.py",
+      "bytes": 1700,
+      "sha256": "2fa7d3508996abb3a766cafaf0b8e7a12eabff85340ed74ab43c5f3c90364690"
+    },
+    {
+      "path": "recovered/orcharst/test_localization_regression.py",
+      "bytes": 2569,
+      "sha256": "5622ae70c7657a52f79516326c4b8bca8d54b22ed85079fa3ff8ed7caec71999"
+    },
+    {
+      "path": "recovered/repository-baseline/agent.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/.gitignore",
+      "bytes": 69,
+      "sha256": "b33c0c7654d1bf0be4758adf88527e5e9881b6ee76355fca929c4bfa6eaa24f5"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/Dockerfile",
+      "bytes": 523,
+      "sha256": "bb88649d8e0abea895c3e11d9887130a4029443dc743cd9b6cb582672d08bff2"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/README.md",
+      "bytes": 6239,
+      "sha256": "eb3db3ff698d5e4a646b797838accaccfef0c463337dd3552d1927292a1e6fc8"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/__init__.py",
+      "bytes": 35,
+      "sha256": "72dcf0479fd20092806618132cf07a9ed63c5ddc48c717e8f521b0bdebaf56e0"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/edges.py",
+      "bytes": 1891,
+      "sha256": "9e24e8120170bf50a1faae56db3df86ce8ee730f8b0346458d37fedf8cbf0be2"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/github_auth.py",
+      "bytes": 3579,
+      "sha256": "3182f099aae831cb08f98f56bef47beefa109c4a833d52b77b49a1a52e1ed90e"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/graph.py",
+      "bytes": 2090,
+      "sha256": "a7e0fd76c71a7d7e68d565378aab41b581b0c40ebc3bb530b1fc71c57fb9ad31"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/nodes.py",
+      "bytes": 23174,
+      "sha256": "62d75bee78e4c407e96f16cd32ba072d20794f8f492ca5a04548c7d24e509bb9"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/state.py",
+      "bytes": 796,
+      "sha256": "03227a86e5ffc0494d15341cb3029c0e21af746074864cf5e58f3c059afa050d"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/tools.py",
+      "bytes": 8126,
+      "sha256": "98b5bfeaaaccfc8c42c74a3b3c8a45a9347659fcc867b46d322fb98347735b3d"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/agent/workflow_state.py",
+      "bytes": 1041,
+      "sha256": "51d69df0bf8a26f77e3916fa78812f35ff36c454ecad227e17bea11053f36505"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/docker/Dockerfile.sandbox",
+      "bytes": 309,
+      "sha256": "21cdf74d762e0d6c02c6d0bac0b8022548fc99c12e612ca1d1a0c7a872b94aca"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/main.py",
+      "bytes": 4492,
+      "sha256": "bebee85e0797eb66c1d8935837f6f6c0047927c9d7635099cd8ab3443c22a2fc"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/render.yaml",
+      "bytes": 185,
+      "sha256": "bb3c336a06ff39aa60b503530699a1eb1ce0778951266b309cb92fe71d16ed0c"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/requirements.txt",
+      "bytes": 244,
+      "sha256": "032f377aed9293b7fe8afdb202640a891a57569179564f40db9dbb9aec7392cd"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/server.py",
+      "bytes": 7822,
+      "sha256": "28dd98f68ec822a93596fb03306047a8cac1f8f550cc3dd96873f2e5fea5d5e7"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/static/app.js",
+      "bytes": 14400,
+      "sha256": "6d23c28801078a0cd6aa9b2918933e2ffcab3b509ee64d111b48a1f580a6fd53"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/static/index.html",
+      "bytes": 17387,
+      "sha256": "5b6821de59ce01bd26797ac293dd2f80914ef70b012935183d8289349b18ac63"
+    },
+    {
+      "path": "recovered/repository-baseline/github-issue-agent/static/styles.css",
+      "bytes": 14875,
+      "sha256": "d1faf3b71e2f91da1afd7baad77bd25b150ef747cc47b8707c48d7dffb9f36e2"
+    },
+    {
+      "path": "recovered/repository-baseline/model.py",
+      "bytes": 7065,
+      "sha256": "6401ac4e4d1840b0f2d68097d735183f5eed3947dde994119006b68df7413a79"
+    }
+  ]
+}

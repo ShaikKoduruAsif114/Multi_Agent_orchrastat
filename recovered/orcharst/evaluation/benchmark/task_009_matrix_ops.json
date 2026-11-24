@@ -1,0 +1,28 @@
+{
+  "task_id": "task_009",
+  "repository": "https://github.com/benchmark-fixtures/task_009_matrix_ops",
+  "issue_id": 1,
+  "issue_title": "Bug: matrix_multiply() silently computes garbage on shape mismatch and transpose() crashes on empty matrices",
+  "issue_body": "## Bug Report\n**File:** `src/matrix_ops.py`\n\n`matrix_multiply(A, B)` does not validate that `len(A[0]) == len(B)`. With mismatched shapes it either raises an opaque IndexError or silently produces a wrong matrix. `transpose` should return an empty list for an empty matrix but instead crashes with IndexError.\n### Expected\n- shape mismatch raises ValueError with a clear message\n- `transpose([]) == []`",
+  "gold_file": "src/matrix_ops.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "no shape validation on multiply",
+    "transpose([]) crashes"
+  ],
+  "expected_behaviors": [
+    "ValueError on mismatch",
+    "transpose([]) == []"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_009.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_009_matrix_ops) defined in evaluation/benchmark/specs",
+    "selection_reason": "Arithmetic & logic bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/matrix_ops.py."
+  }
+}

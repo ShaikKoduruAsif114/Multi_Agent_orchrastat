@@ -1,0 +1,28 @@
+{
+  "task_id": "task_012",
+  "repository": "https://github.com/benchmark-fixtures/task_012_config_loader",
+  "issue_id": 1,
+  "issue_title": "Bug: Config.set() mutates DEFAULTS globally and get() with a missing key raises instead of returning the fallback",
+  "issue_body": "## Bug Report\n**File:** `src/config_loader.py`\n\n`Config.set()` writes into the shared `DEFAULTS` dict, so two `Config` instances leak values into each other. `get(key, default)` raises `KeyError` instead of returning `default` when the key is missing.\n### Expected\n- instances have independent overrides\n- `get('missing', 'fb') == 'fb'`",
+  "gold_file": "src/config_loader.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "set() leaks into DEFAULTS/global state",
+    "get() raises KeyError on missing key"
+  ],
+  "expected_behaviors": [
+    "per-instance overrides",
+    "get() returns fallback"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_012.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_012_config_loader) defined in evaluation/benchmark/specs",
+    "selection_reason": "State & identity management bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/config_loader.py."
+  }
+}

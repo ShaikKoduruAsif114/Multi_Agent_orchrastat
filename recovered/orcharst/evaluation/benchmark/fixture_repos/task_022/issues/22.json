@@ -1,0 +1,11 @@
+{
+  "number": 22,
+  "title": "Bug: FeatureFlags env override precedence is inverted and unknown flags crash instead of warning",
+  "body": "## Bug Report\n**File:** `src/feature_flags.py`\n\n`FeatureFlags` resolves flag values with inverted precedence: the defaults dict overrides both the environment and the user-supplied overrides. Also `is_enabled('unknown')` raises KeyError instead of returning the default.\n### Expected\n- precedence: user overrides > environment > defaults\n- unknown flag -> return `default_for_unknown` (False unless specified)",
+  "repository": "https://github.com/benchmark-fixtures/task_022_feature_flags",
+  "labels": [
+    "bug",
+    "configuration",
+    "medium"
+  ]
+}

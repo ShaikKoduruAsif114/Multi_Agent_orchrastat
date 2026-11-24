@@ -1,0 +1,11 @@
+{
+  "number": 14,
+  "title": "Bug: Queue.pop() returns the newest item instead of the oldest (FIFO violated) and peek() on empty raises",
+  "body": "## Bug Report\n**File:** `src/queue_manager.py`\n\n`TaskQueue.pop()` removes the LAST item (LIFO) although the class is documented as FIFO. `peek()` on an empty queue raises IndexError instead of returning None.\n### Expected\n- pop() returns items in insertion order\n- peek()/pop() on empty return None (pop with default)",
+  "repository": "https://github.com/benchmark-fixtures/task_014_queue_manager",
+  "labels": [
+    "bug",
+    "off_by_one",
+    "medium"
+  ]
+}

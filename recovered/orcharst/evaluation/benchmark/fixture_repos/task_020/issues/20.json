@@ -1,0 +1,11 @@
+{
+  "number": 20,
+  "title": "Bug: RateLimiter.allow_request() counts window boundaries wrongly and blocks legitimate traffic",
+  "body": "## Bug Report\n**File:** `src/rate_limiter.py`\n\nThe sliding-window limiter counts ALL timestamps ever recorded instead of only those within the window, so after the first burst every later request is denied forever. A regression introduced in v1.2.\n### Expected\n- at most `max_requests` within any `window_sec`\n- old timestamps expire and no longer count",
+  "repository": "https://github.com/benchmark-fixtures/task_020_rate_limiter",
+  "labels": [
+    "bug",
+    "regression_style",
+    "hard"
+  ]
+}

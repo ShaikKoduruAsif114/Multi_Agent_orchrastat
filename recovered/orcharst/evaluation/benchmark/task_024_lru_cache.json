@@ -1,0 +1,27 @@
+{
+  "task_id": "task_024",
+  "repository": "https://github.com/benchmark-fixtures/task_024_lru_cache",
+  "issue_id": 1,
+  "issue_title": "Bug: LRUCache evicts the most recently used entry and get() does not refresh recency",
+  "issue_body": "## Bug Report\n**File:** `src/lru_cache.py`\n\n`LRUCache.get()` does not move the accessed key to the most-recently-used position, and `put()` evicts from the FRONT of the order list (which after insertion order is the *most* recently used). Correct LRU behavior required.\n### Expected\n- get() refreshes recency\n- eviction removes the LEAST recently used entry\n- capacity never exceeded",
+  "gold_file": "src/lru_cache.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "get() does not refresh recency",
+    "put() evicts the newest entry"
+  ],
+  "expected_behaviors": [
+    "true LRU eviction semantics"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_024.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_024_lru_cache) defined in evaluation/benchmark/specs",
+    "selection_reason": "State & identity management bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "hard",
+    "bug_count": 2,
+    "notes": "Agent must identify src/lru_cache.py."
+  }
+}

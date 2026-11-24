@@ -1,0 +1,11 @@
+{
+  "number": 30,
+  "title": "Bug: parse_ini() drops duplicate keys instead of last-wins, ignores inline comments, and section headers keep brackets",
+  "body": "## Bug Report\n**File:** `src/ini_parser.py`\n\n`parse_ini()` stores section headers WITH brackets (`[core]`), splits `key = value # comment` including the comment into the value, and when a key repeats the first value wins (should be last-wins).\n### Expected\n- sections stored without brackets\n- inline `;` comments stripped\n- duplicate keys: last value wins",
+  "repository": "https://github.com/benchmark-fixtures/task_030_ini_parser",
+  "labels": [
+    "bug",
+    "configuration",
+    "medium"
+  ]
+}

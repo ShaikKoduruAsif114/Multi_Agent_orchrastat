@@ -1,0 +1,28 @@
+{
+  "task_id": "task_022",
+  "repository": "https://github.com/benchmark-fixtures/task_022_feature_flags",
+  "issue_id": 1,
+  "issue_title": "Bug: FeatureFlags env override precedence is inverted and unknown flags crash instead of warning",
+  "issue_body": "## Bug Report\n**File:** `src/feature_flags.py`\n\n`FeatureFlags` resolves flag values with inverted precedence: the defaults dict overrides both the environment and the user-supplied overrides. Also `is_enabled('unknown')` raises KeyError instead of returning the default.\n### Expected\n- precedence: user overrides > environment > defaults\n- unknown flag -> return `default_for_unknown` (False unless specified)",
+  "gold_file": "src/feature_flags.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "defaults override env/overrides",
+    "unknown flag raises KeyError"
+  ],
+  "expected_behaviors": [
+    "correct precedence chain",
+    "unknown flags return default_for_unknown"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_022.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_022_feature_flags) defined in evaluation/benchmark/specs",
+    "selection_reason": "Configuration & precedence bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/feature_flags.py."
+  }
+}

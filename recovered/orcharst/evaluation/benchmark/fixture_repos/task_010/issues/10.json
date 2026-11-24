@@ -1,0 +1,11 @@
+{
+  "number": 10,
+  "title": "Bug: is_valid_email() accepts emails without a TLD and normalizes addresses incorrectly",
+  "body": "## Bug Report\n**File:** `src/email_validator.py`\n\n`is_valid_email()` only checks that the string contains '@', so `user@localhost` and `user@` are accepted as valid. `normalize()` lowercases the local part too, losing case-sensitive information; only the domain part should be lowercased.\n### Expected\n- a valid email has a non-empty local part, an '@', and a domain with a dot and a 2+ char TLD\n- `normalize()` preserves local-part case",
+  "repository": "https://github.com/benchmark-fixtures/task_010_email_validator",
+  "labels": [
+    "bug",
+    "input_validation",
+    "easy"
+  ]
+}

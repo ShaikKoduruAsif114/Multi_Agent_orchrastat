@@ -1,0 +1,30 @@
+{
+  "task_id": "task_027",
+  "repository": "https://github.com/benchmark-fixtures/task_027_path_resolver",
+  "issue_id": 1,
+  "issue_title": "Bug: resolve_path() joins URLs/paths wrongly, missing extension detection, and relative walk escapes root",
+  "issue_body": "## Bug Report\n**File:** `src/path_resolver.py`\n\n`resolve_path(base, sub)` breaks when `sub` is absolute (should return the absolute sub as-is) or when segments are empty. `has_extension()` returns True for names like 'archive.tar.gz' even when checking for '.gz' on a stem-only check basis; `is_within_root()` incorrectly approves paths containing '..' segments.\n### Expected\n- absolute sub -> returned unchanged\n- 'a/../../etc' must be rejected by is_within_root",
+  "gold_file": "src/path_resolver.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "absolute sub joined under base",
+    "has_extension is a substring check",
+    "'..' traversal approved"
+  ],
+  "expected_behaviors": [
+    "absolute preserved",
+    "true extension comparison",
+    "traversal rejected"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_027.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_027_path_resolver) defined in evaluation/benchmark/specs",
+    "selection_reason": "File & path handling bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 3,
+    "notes": "Agent must identify src/path_resolver.py."
+  }
+}

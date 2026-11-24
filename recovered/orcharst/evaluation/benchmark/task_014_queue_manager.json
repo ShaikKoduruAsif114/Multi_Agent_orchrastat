@@ -1,0 +1,28 @@
+{
+  "task_id": "task_014",
+  "repository": "https://github.com/benchmark-fixtures/task_014_queue_manager",
+  "issue_id": 1,
+  "issue_title": "Bug: Queue.pop() returns the newest item instead of the oldest (FIFO violated) and peek() on empty raises",
+  "issue_body": "## Bug Report\n**File:** `src/queue_manager.py`\n\n`TaskQueue.pop()` removes the LAST item (LIFO) although the class is documented as FIFO. `peek()` on an empty queue raises IndexError instead of returning None.\n### Expected\n- pop() returns items in insertion order\n- peek()/pop() on empty return None (pop with default)",
+  "gold_file": "src/queue_manager.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "pop() is LIFO",
+    "peek() raises IndexError on empty"
+  ],
+  "expected_behaviors": [
+    "pop() is FIFO",
+    "peek()/pop() return None on empty"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_014.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_014_queue_manager) defined in evaluation/benchmark/specs",
+    "selection_reason": "Off-by-one / boundary logic bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/queue_manager.py."
+  }
+}

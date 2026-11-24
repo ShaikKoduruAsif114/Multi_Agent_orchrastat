@@ -1,0 +1,11 @@
+{
+  "number": 23,
+  "title": "Bug: flatten_json() loses nested keys deeper than 2 levels and mangles list indices",
+  "body": "## Bug Report\n**File:** `src/json_flattener.py`\n\n`flatten_json({'a': {'b': {'c': 1}}})` returns the wrong result for depth-3 nesting (inner dicts are str()-ed instead of recursed). Arrays produce keys like 'a.0' via enumerate off-by-one ('a.1' for the first element).\n### Expected\n- arbitrary nesting recursed: 'a.b.c' -> 1\n- list indices are 0-based: 'items.0' for the first element\n- `unflatten()` restores nested structure",
+  "repository": "https://github.com/benchmark-fixtures/task_023_json_flattener",
+  "labels": [
+    "bug",
+    "data_transformation",
+    "hard"
+  ]
+}

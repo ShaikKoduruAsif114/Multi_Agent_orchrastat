@@ -1,0 +1,30 @@
+{
+  "task_id": "task_019",
+  "repository": "https://github.com/benchmark-fixtures/task_019_data_transform",
+  "issue_id": 1,
+  "issue_title": "Bug: group_by() loses elements, flatten() drops nested empty lists, and dedupe() keeps the wrong occurrence",
+  "issue_body": "## Bug Report\n**File:** `src/data_transform.py`\n\n`group_by(items, key)` only keeps the last element per key because it overwrites instead of appending. `flatten()` skips empty nested lists entirely (they should vanish but deeper nesting is mishandled). `dedupe()` keeps the LAST occurrence of duplicates instead of the first.\n### Expected\n- group_by appends\n- flatten handles arbitrary nesting\n- dedupe keeps first occurrence order",
+  "gold_file": "src/data_transform.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "group_by keeps only last element per key",
+    "single-level flatten only",
+    "dedupe keeps last occurrence"
+  ],
+  "expected_behaviors": [
+    "group_by appends",
+    "recursive flatten",
+    "first-occurrence dedupe"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_019.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_019_data_transform) defined in evaluation/benchmark/specs",
+    "selection_reason": "Data transformation bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 3,
+    "notes": "Agent must identify src/data_transform.py."
+  }
+}

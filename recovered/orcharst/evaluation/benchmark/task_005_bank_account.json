@@ -1,0 +1,30 @@
+{
+  "task_id": "task_005",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "issue_id": 5,
+  "issue_title": "Bug: BankAccount.withdraw() allows negative balance (no overdraft protection)",
+  "issue_body": "## Bug Report\n\n**File:** `src/bank_account.py`\n**Class:** `BankAccount`\n\n### Description\n\n**Bug 1 — `withdraw()`:** There is no check to prevent the balance going negative. A user with $50 can withdraw $500 and end up with -$450.\n\n**Bug 2 — `transfer()`:** Does not check if the sender has sufficient funds before deducting. This allows a sender with $0 to transfer $1000.\n\n**Bug 3 — `apply_interest()`:** Uses simple interest formula (`P + PRT`) instead of compound interest formula (`P * (1+R)^T`), producing incorrect results for multi-year periods.\n\n### Steps to Reproduce\n```python\nfrom src.bank_account import BankAccount\n\nacc = BankAccount(\"Alice\", 50.0)\nacc.withdraw(500)              # Balance is now -450!\n\nsender = BankAccount(\"Bob\", 0)\nreceiver = BankAccount(\"Carol\", 100)\nsender.transfer(receiver, 1000)  # Bob now has -1000!\n\nacc2 = BankAccount(\"Dave\", 1000)\nacc2.apply_interest(0.1, 3)    # Wrong formula used\n```\n\n### Expected Behavior\n- `withdraw()` should raise `ValueError(\"Insufficient funds\")` if `amount > self.balance`\n- `transfer()` should validate sender balance before proceeding\n- `apply_interest()` should use `balance * (1 + rate) ** years`",
+  "gold_file": "src/bank_account.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "withdraw(500) when balance=50 sets balance to -450 (no overdraft check)",
+    "transfer(receiver, 1000) when sender.balance=0 allows negative balance",
+    "apply_interest(0.1, 3) uses simple interest formula (P+PRT) not compound (P*(1+R)^T)"
+  ],
+  "expected_behaviors": [
+    "acc.withdraw(500) raises ValueError('Insufficient funds') when balance < 500",
+    "sender.transfer(receiver, 1000) raises ValueError when sender.balance < 1000",
+    "BankAccount('Dave', 1000).apply_interest(0.1, 3) == 1331.0 (compound: 1000*(1.1)^3)"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_005.py",
+  "metadata": {
+    "source": "Local test-buggy-app repository (ShaikKoduruAsif114/agent-bug-testground)",
+    "selection_reason": "Clear bug descriptions, pure Python stdlib, known ground truth, intentionally planted bugs",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 3,
+    "notes": "apply_interest is the trickiest — requires compound vs simple interest knowledge. Simple interest gives 1300 for 1000 at 10% for 3 years; compound gives 1331."
+  }
+}

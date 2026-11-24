@@ -1,0 +1,27 @@
+{
+  "task_id": "task_017",
+  "repository": "https://github.com/benchmark-fixtures/task_017_api_client",
+  "issue_id": 1,
+  "issue_title": "Bug: ApiClient.get() passes URL as keyword the server mock rejects and post() ignores json_body",
+  "issue_body": "## Bug Report\n**File:** `src/api_client.py`\n\n`ApiClient` wraps an HTTP session. `get()` calls `session.request('GET', params=...)` but passes the query params positionally into the wrong slot, and `post()` builds the body but never forwards it to the session (`json_body` is dropped). Backed by an injectable session for testing.\n### Expected\n- `get('/users', params={'a': 1})` forwards `params={'a': 1}`\n- `post('/users', json_body={...})` forwards `json={...}`",
+  "gold_file": "src/api_client.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "params land in the wrong argument slot",
+    "json_body silently dropped on post()"
+  ],
+  "expected_behaviors": [
+    "params and json forwarded to session"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_017.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_017_api_client) defined in evaluation/benchmark/specs",
+    "selection_reason": "API / argument misuse bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/api_client.py."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "task_id": "task_003",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "issue_id": 3,
+  "issue_title": "Bug: ShoppingCart.get_total() ignores item quantity",
+  "issue_body": "## Bug Report\n\n**File:** `src/shopping_cart.py`\n**Class:** `ShoppingCart`\n\n### Description\nThe `get_total()` method sums only `item['price']` but ignores `item['quantity']`. This means adding 3 units of a $10 item returns $10 instead of $30.\n\nAdditionally, `apply_discount()` subtracts the raw percentage number from the total instead of applying it as a percentage. A 10% discount on $200 should give $180 but the code gives $190.\n\nThe `remove_item()` method crashes with `StopIteration` if the item name doesn't exist in the cart.\n\n### Steps to Reproduce\n```python\nfrom src.shopping_cart import ShoppingCart\n\ncart = ShoppingCart()\ncart.add_item(\"Book\", 10.0, quantity=3)\nprint(cart.get_total())        # Returns 10.0 instead of 30.0\n\ncart.add_item(\"Pen\", 5.0)\nprint(cart.apply_discount(10)) # Should apply 10%, gives wrong result\n\ncart.remove_item(\"Laptop\")     # StopIteration crash\n```\n\n### Expected Behavior\n- `get_total()` must multiply `price * quantity` for each item\n- `apply_discount(percent)` must compute `total * (1 - percent/100)`\n- `remove_item()` should return `False` gracefully if item not found",
+  "gold_file": "src/shopping_cart.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "get_total() ignores quantity (sums only price, not price*quantity)",
+    "apply_discount(10) subtracts 10 instead of 10% of total",
+    "remove_item('nonexistent') raises StopIteration"
+  ],
+  "expected_behaviors": [
+    "cart.add_item('Book', 10.0, quantity=3); cart.get_total() == 30.0",
+    "cart with total $200; cart.apply_discount(10) == 180.0",
+    "cart.remove_item('nonexistent') returns False without raising"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_003.py",
+  "metadata": {
+    "source": "Local test-buggy-app repository (ShaikKoduruAsif114/agent-bug-testground)",
+    "selection_reason": "Clear bug descriptions, pure Python stdlib, known ground truth, intentionally planted bugs",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 3,
+    "notes": "The apply_discount bug is subtle — for certain inputs it accidentally gives correct results (e.g. 10% of $100 = $90 = $100-10, same result). Hidden tests use inputs that expose the bug."
+  }
+}

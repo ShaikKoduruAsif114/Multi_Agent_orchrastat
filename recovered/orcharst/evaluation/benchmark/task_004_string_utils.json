@@ -1,0 +1,34 @@
+{
+  "task_id": "task_004",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "issue_id": 4,
+  "issue_title": "Bug: is_palindrome() fails on mixed-case strings and truncate() always adds ellipsis",
+  "issue_body": "## Bug Report\n\n**File:** `src/string_utils.py`\n\n### Description\n\n**Bug 1 — `is_palindrome()`:** The function does not normalize case before checking. `is_palindrome('Racecar')` returns `False` instead of `True`.\n\n**Bug 2 — `count_words()`:** Uses `text.split(' ')` which splits on a single space. Multiple consecutive spaces create empty string tokens, making `\"hello  world\"` count as 3 words instead of 2.\n\n**Bug 3 — `truncate()`:** Always appends `'...'` regardless of string length. `truncate(\"Hi\", 100)` returns `\"Hi...\"` instead of just `\"Hi\"`.\n\n### Steps to Reproduce\n```python\nfrom src.string_utils import is_palindrome, count_words, truncate\n\nis_palindrome(\"Racecar\")        # Returns False, should be True\ncount_words(\"hello  world\")     # Returns 3, should be 2\ntruncate(\"Hi there\", 100)       # Returns \"Hi there...\", should be \"Hi there\"\n```\n\n### Expected Behavior\n- `is_palindrome()` must normalize to lowercase before comparing\n- `count_words()` should use `text.split()` (no args) which handles multiple spaces\n- `truncate()` should only append `'...'` if `len(text) > max_length`",
+  "gold_file": "src/string_utils.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "is_palindrome('Racecar') returns False (should be True)",
+    "count_words('hello  world') returns 3 (should be 2)",
+    "truncate('Hi there', 100) returns 'Hi there...' (should be 'Hi there')"
+  ],
+  "expected_behaviors": [
+    "is_palindrome('Racecar') == True",
+    "is_palindrome('racecar') == True",
+    "is_palindrome('hello') == False",
+    "count_words('hello  world') == 2",
+    "count_words('one two three') == 3",
+    "truncate('Hi there', 100) == 'Hi there'",
+    "truncate('Hello World', 5) == 'Hello...'"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_004.py",
+  "metadata": {
+    "source": "Local test-buggy-app repository (ShaikKoduruAsif114/agent-bug-testground)",
+    "selection_reason": "Clear bug descriptions, pure Python stdlib, known ground truth, intentionally planted bugs",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "easy",
+    "bug_count": 3,
+    "notes": "Three independent single-line fixes. Good test of whether agent fixes all bugs or only the most obvious one."
+  }
+}

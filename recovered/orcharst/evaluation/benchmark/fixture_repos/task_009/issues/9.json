@@ -1,0 +1,11 @@
+{
+  "number": 9,
+  "title": "Bug: matrix_multiply() silently computes garbage on shape mismatch and transpose() crashes on empty matrices",
+  "body": "## Bug Report\n**File:** `src/matrix_ops.py`\n\n`matrix_multiply(A, B)` does not validate that `len(A[0]) == len(B)`. With mismatched shapes it either raises an opaque IndexError or silently produces a wrong matrix. `transpose` should return an empty list for an empty matrix but instead crashes with IndexError.\n### Expected\n- shape mismatch raises ValueError with a clear message\n- `transpose([]) == []`",
+  "repository": "https://github.com/benchmark-fixtures/task_009_matrix_ops",
+  "labels": [
+    "bug",
+    "arithmetic_logic",
+    "medium"
+  ]
+}

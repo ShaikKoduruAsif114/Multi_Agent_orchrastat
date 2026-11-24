@@ -1,0 +1,77 @@
+# evaluation/configs/benchmark_adaptive.yaml
+# Adaptive multi-agent vs baseline_b comparison
+# Experiment: nara_laguna_adaptive_vs_baseline_20260910
+
+benchmark_dir: "evaluation/benchmark"
+results_dir: "evaluation/results"
+reports_dir: "evaluation/reports"
+figures_dir: "evaluation/reports/figures"
+hidden_tests_dir: "evaluation/hidden_tests"
+tasks:
+  - "task_001_calculator.json"
+  - "task_002_user_manager.json"
+  - "task_003_shopping_cart.json"
+  - "task_004_string_utils.json"
+  - "task_005_bank_account.json"
+  - "task_006_inventory_manager.json"
+  - "task_007_date_utils.json"
+  - "task_008_csv_parser.json"
+  - "task_009_matrix_ops.json"
+  - "task_010_email_validator.json"
+  - "task_011_temperature_converter.json"
+  - "task_012_config_loader.json"
+  - "task_013_text_stats.json"
+  - "task_014_queue_manager.json"
+  - "task_015_pagination.json"
+  - "task_016_file_utils.json"
+  - "task_017_api_client.json"
+  - "task_018_session_store.json"
+  - "task_019_data_transform.json"
+  - "task_020_rate_limiter.json"
+  - "task_021_ledger.json"
+  - "task_022_feature_flags.json"
+  - "task_023_json_flattener.json"
+  - "task_024_lru_cache.json"
+  - "task_025_slugify.json"
+  - "task_026_statistics_utils.json"
+  - "task_027_path_resolver.json"
+  - "task_028_retry_policy.json"
+  - "task_029_interval_merger.json"
+  - "task_030_ini_parser.json"
+
+model:
+  provider: "nara"
+  name: "laguna-s-2.1"
+  temperature: 0
+
+execution_settings:
+  retry_budget: 3
+  timeout_seconds: 120
+  sandbox: "subprocess"
+
+evaluation_settings:
+  hidden_tests_dir: "evaluation/hidden_tests"
+  results_dir: "evaluation/results"
+  reports_dir: "evaluation/reports"
+  figures_dir: "evaluation/reports/figures"
+
+systems:
+  - name: "adaptive_multi_agent"
+    description: "Adaptive multi-agent with difficulty-based escalation (PATH_A/B/C)"
+    module: "evaluation/baselines/baseline_adaptive.py"
+    enabled: true
+
+  - name: "baseline_b"
+    description: "Single agent + retry (same budget as multi-agent)"
+    module: "evaluation/baselines/baseline_b_single_retry.py"
+    enabled: true
+
+# Environment variables for all systems
+env_overrides:
+  PROVIDER: "nara"
+  NARAROUTER_MODEL: "laguna-s-2.1"
+  NARAROUTER_BASE_URL: "https://router.bynara.id/v1"
+  NARA_LLM_TIMEOUT: "120"
+  AGENT_LOCALIZATION_V2: "1"
+  AGENT_STRICT_LLM: "1"
+  AGENT_MAX_RETRIES: "3"

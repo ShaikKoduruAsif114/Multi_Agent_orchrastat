@@ -1,0 +1,11 @@
+{
+  "number": 26,
+  "title": "Bug: median() picks the wrong element for even-length input and percentile() extrapolates beyond the data",
+  "body": "## Bug Report\n**File:** `src/statistics_utils.py`\n\n`median()` returns the lower of the two middle elements for even-length lists instead of their mean. `percentile(data, p)` for p=0 goes out of bounds.\n### Expected\n- median([1,2,3,4]) == 2.5\n- `percentile(data, 0)` returns min, `percentile(data, 100)` returns max",
+  "repository": "https://github.com/benchmark-fixtures/task_026_statistics_utils",
+  "labels": [
+    "bug",
+    "arithmetic_logic",
+    "medium"
+  ]
+}

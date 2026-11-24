@@ -1,0 +1,11 @@
+{
+  "number": 8,
+  "title": "Bug: parse_csv() splits fields naively on commas inside quoted values and parse_int_list() crashes on whitespace",
+  "body": "## Bug Report\n**File:** `src/csv_parser.py`\n\n`parse_csv()` uses `line.split(',')` so a quoted field containing a comma (`\"Smith, John\"`) is wrongly split into two columns. `parse_int_list()` does not strip surrounding whitespace, so `'1, 2, 3'` crashes with `ValueError: invalid literal`.\n### Expected\n- quoted fields with commas stay intact\n- `parse_int_list('1, 2, 3') == [1, 2, 3]`",
+  "repository": "https://github.com/benchmark-fixtures/task_008_csv_parser",
+  "labels": [
+    "bug",
+    "parsing",
+    "medium"
+  ]
+}

@@ -1,0 +1,103 @@
+# evaluation/configs/benchmark.yaml
+# Reproducible benchmark configuration
+# Run with: python evaluation/run_benchmark.py --config evaluation/configs/benchmark.yaml
+
+# -----------------------------------------------------------------------
+# Benchmark dataset
+# -----------------------------------------------------------------------
+benchmark_dir: "evaluation/benchmark"
+tasks:
+  - "task_001_calculator.json"
+  - "task_002_user_manager.json"
+  - "task_003_shopping_cart.json"
+  - "task_004_string_utils.json"
+  - "task_005_bank_account.json"
+  - "task_006_inventory_manager.json"
+  - "task_007_date_utils.json"
+  - "task_008_csv_parser.json"
+  - "task_009_matrix_ops.json"
+  - "task_010_email_validator.json"
+  - "task_011_temperature_converter.json"
+  - "task_012_config_loader.json"
+  - "task_013_text_stats.json"
+  - "task_014_queue_manager.json"
+  - "task_015_pagination.json"
+  - "task_016_file_utils.json"
+  - "task_017_api_client.json"
+  - "task_018_session_store.json"
+  - "task_019_data_transform.json"
+  - "task_020_rate_limiter.json"
+  - "task_021_ledger.json"
+  - "task_022_feature_flags.json"
+  - "task_023_json_flattener.json"
+  - "task_024_lru_cache.json"
+  - "task_025_slugify.json"
+  - "task_026_statistics_utils.json"
+  - "task_027_path_resolver.json"
+  - "task_028_retry_policy.json"
+  - "task_029_interval_merger.json"
+  - "task_030_ini_parser.json"
+
+# -----------------------------------------------------------------------
+# Model configuration
+# -----------------------------------------------------------------------
+model:
+  provider: "groq"
+  name: "openai/gpt-oss-120b"   # verified available on this key; exported as GROQ_MODEL to ALL systems
+  temperature: 0
+
+# -----------------------------------------------------------------------
+# Execution settings
+# -----------------------------------------------------------------------
+retry_budget: 3          # Maximum code generation retries per task
+timeout_seconds: 120     # Maximum wall-clock time per task
+sandbox: "docker"        # "docker" | "subprocess" | "none"
+
+# -----------------------------------------------------------------------
+# Evaluation settings
+# -----------------------------------------------------------------------
+hidden_tests_dir: "evaluation/hidden_tests"
+results_dir: "evaluation/results"
+reports_dir: "evaluation/reports"
+figures_dir: "evaluation/reports/figures"
+
+# -----------------------------------------------------------------------
+# Benchmark systems to run
+# -----------------------------------------------------------------------
+systems:
+  - name: "baseline_a"
+    description: "Single agent, no research, no retry"
+    module: "evaluation/baselines/baseline_a_single_agent.py"
+    enabled: true
+
+  - name: "baseline_b"
+    description: "Single agent + retry (same budget as multi-agent)"
+    module: "evaluation/baselines/baseline_b_single_retry.py"
+    enabled: true
+
+  - name: "multi_agent"
+    description: "Full multi-agent pipeline (headless, eval_mode=True)"
+    module: "evaluation/baselines/baseline_c_multi_agent.py"
+    enabled: true
+
+# -----------------------------------------------------------------------
+# Ablation configurations
+# -----------------------------------------------------------------------
+ablations:
+  - name: "ablation_no_retry"
+    description: "Multi-agent without retry (max_retries=0)"
+    retry_budget: 0
+    enabled: true
+
+# -----------------------------------------------------------------------
+# Reproducibility
+# -----------------------------------------------------------------------
+random_seed: 42          # Used wherever randomness is involved
+
+# -----------------------------------------------------------------------
+# Safety
+# -----------------------------------------------------------------------
+docker_memory_limit: "256m"
+docker_cpu_limit: "0.5"
+docker_network: "none"
+container_timeout: 30

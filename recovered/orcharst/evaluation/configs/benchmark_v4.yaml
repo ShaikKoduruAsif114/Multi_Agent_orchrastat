@@ -1,0 +1,103 @@
+# evaluation/configs/benchmark_v4.yaml
+# ============================================================================
+# ADAPTIVE V4 CONTROLLED EXPERIMENT — FROZEN CONFIGURATION
+# ============================================================================
+# Research question: does the adaptive multi-agent controller resolve more
+# tasks than baseline_b under CORRECTED experimental controls?
+#
+# V4 changes vs V3 (controls only — the adaptive controller logic is NOT
+# modified; see evaluation/V4_PROTOCOL.md):
+#   1. IDENTICAL retry budget 2 for BOTH arms (AGENT_REPAIR_BUDGET=2 pins the
+#      adaptive paths; AGENT_MAX_RETRIES=2 drives baseline_b).
+#   2. Mandatory --evaluate post-run pipeline (manifest gate + canonical
+#      3-artifact ledger + V01-V10 validation) before any report.
+#   3. Mandatory preflight (evaluation/preflight_v4.py) before the run.
+#   4. Frozen 182-input manifest gate required before and after the run.
+#
+# The evaluator fails closed: unequal budgets (V04), missing/duplicate tasks
+# (V01/V02/V03), contradictory first-pass fields (V06), and inconsistent
+# outcome fields (V07) invalidate the experiment.
+
+benchmark_dir: "evaluation/benchmark"
+results_dir: "evaluation/results"
+reports_dir: "evaluation/reports"
+figures_dir: "evaluation/reports/figures"
+hidden_tests_dir: "evaluation/hidden_tests"
+
+tasks:
+  - "task_001_calculator.json"
+  - "task_002_user_manager.json"
+  - "task_003_shopping_cart.json"
+  - "task_004_string_utils.json"
+  - "task_005_bank_account.json"
+  - "task_006_inventory_manager.json"
+  - "task_007_date_utils.json"
+  - "task_008_csv_parser.json"
+  - "task_009_matrix_ops.json"
+  - "task_010_email_validator.json"
+  - "task_011_temperature_converter.json"
+  - "task_012_config_loader.json"
+  - "task_013_text_stats.json"
+  - "task_014_queue_manager.json"
+  - "task_015_pagination.json"
+  - "task_016_file_utils.json"
+  - "task_017_api_client.json"
+  - "task_018_session_store.json"
+  - "task_019_data_transform.json"
+  - "task_020_rate_limiter.json"
+  - "task_021_ledger.json"
+  - "task_022_feature_flags.json"
+  - "task_023_json_flattener.json"
+  - "task_024_lru_cache.json"
+  - "task_025_slugify.json"
+  - "task_026_statistics_utils.json"
+  - "task_027_path_resolver.json"
+  - "task_028_retry_policy.json"
+  - "task_029_interval_merger.json"
+  - "task_030_ini_parser.json"
+
+model:
+  provider: "nara"
+  name: "laguna-s-2.1"
+  temperature: 0
+
+execution_settings:
+  # IDENTICAL retry budget for BOTH arms. AGENT_REPAIR_BUDGET pins the
+  # adaptive controller's per-path budgets (V3: PATH_A=1/PATH_B=2/PATH_C=3);
+  # AGENT_MAX_RETRIES drives baseline_b. Both must be 2 — preflight enforces.
+  retry_budget: 2
+  timeout_seconds: 120
+  sandbox: "subprocess"
+
+evaluation_settings:
+  hidden_tests_dir: "evaluation/hidden_tests"
+  results_dir: "evaluation/results"
+  reports_dir: "evaluation/reports"
+  figures_dir: "evaluation/reports/figures"
+  # Post-run pipeline (mandatory for V4)
+  require_preflight: true
+  require_manifest_gate: true
+  require_evaluate: true
+  evaluator_version: "1.0.0"   # build_ledger/validate_ledger canonical package
+
+systems:
+  - name: "adaptive_multi_agent"
+    description: "Adaptive V3 controller logic UNCHANGED (V4 isolates corrected controls)"
+    module: "evaluation/baselines/baseline_adaptive.py"
+    enabled: true
+
+  - name: "baseline_b"
+    description: "Single agent + retry, identical budget (2)"
+    module: "evaluation/baselines/baseline_b_single_retry.py"
+    enabled: true
+
+env_overrides:
+  PROVIDER: "nara"
+  NARAROUTER_MODEL: "laguna-s-2.1"
+  NARAROUTER_BASE_URL: "https://router.bynara.id/v1"
+  NARA_LLM_TIMEOUT: "120"
+  AGENT_LOCALIZATION_V2: "1"
+  AGENT_STRICT_LLM: "1"
+  # ---- IDENTICAL RETRY BUDGETS (the V3 flaw, corrected) ---------------------
+  AGENT_MAX_RETRIES: "2"       # baseline_b budget
+  AGENT_REPAIR_BUDGET: "2"     # adaptive pin: ALL paths budget 2

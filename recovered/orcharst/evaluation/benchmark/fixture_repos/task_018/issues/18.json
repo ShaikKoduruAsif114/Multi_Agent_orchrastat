@@ -1,0 +1,11 @@
+{
+  "number": 18,
+  "title": "Bug: SessionStore shares one dict across all instances and expired sessions are never cleaned",
+  "body": "## Bug Report\n**File:** `src/session_store.py`\n\n`SessionStore` uses a mutable default argument (`sessions={}`), so all instances share the same session dict. `purge_expired()` never removes anything because it compares against the wrong clock.\n### Expected\n- two stores are independent\n- `purge_expired(now)` drops sessions whose `expires_at <= now`",
+  "repository": "https://github.com/benchmark-fixtures/task_018_session_store",
+  "labels": [
+    "bug",
+    "state_management",
+    "medium"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "number": 15,
+  "title": "Bug: paginate() returns the wrong slice for the last page and total_pages() over-counts",
+  "body": "## Bug Report\n**File:** `src/pagination.py`\n\n`paginate(items, page, size)` computes `start = page * size` but ends at `start + size - 1`, silently dropping the last item of every page. `total_pages()` uses integer division without rounding up, so 10 items with page size 4 report 2 pages instead of 3.\n### Expected\n- page 2 of [0..9] with size 4 is [4,5,6,7]\n- `total_pages(10, 4) == 3`",
+  "repository": "https://github.com/benchmark-fixtures/task_015_pagination",
+  "labels": [
+    "bug",
+    "off_by_one",
+    "medium"
+  ]
+}

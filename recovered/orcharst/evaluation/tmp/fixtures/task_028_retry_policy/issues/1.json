@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: backoff_delay() computes exponentially growing delays without a cap and retry loop passes wrong args to the callable",
+  "body": "## Bug Report\n**File:** `src/retry_policy.py`\n\n`backoff_delay(attempt)` grows without bound (ignores `max_delay`) and resets on jitter. `retry_call(func, *args)` calls `func()` without forwarding `args` \u2014 the classic API-misuse bug.\n### Expected\n- delay = min(base * 2**attempt, max_delay)\n- `retry_call` forwards all positional args to `func` and returns its result",
+  "state": "open"
+}

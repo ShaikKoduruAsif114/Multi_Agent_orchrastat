@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: merge_intervals() misses overlaps for touching ranges and insert_interval() corrupts ordering",
+  "body": "## Bug Report\n**File:** `src/interval_merger.py`\n\nA v2.0 regression: `merge_intervals()` no longer merges adjacent-but-touching intervals like (1,3) and (3,5) that used to merge into (1,5), and `insert_interval()` appends without re-sorting so later operations see corrupt order.\n### Expected\n- touching intervals merge\n- `insert_interval()` keeps the list sorted\n- overlaps merge correctly",
+  "state": "open"
+}

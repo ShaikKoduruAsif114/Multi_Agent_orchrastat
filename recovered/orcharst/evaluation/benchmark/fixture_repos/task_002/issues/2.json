@@ -1,0 +1,11 @@
+{
+  "number": 2,
+  "title": "Bug: get_user() returns wrong key name causing KeyError in API consumers",
+  "body": "## Bug Report\n\n**File:** `src/user_manager.py`\n\n### Description\nThe `get_user()` function returns a dictionary with the key `username` but the user object is stored with the key `name`. This inconsistency breaks callers that access `result['name']`.\n\nAdditionally, `update_email()` accepts any string as an email without validating that it contains an `@` symbol.\n\n### Expected Behavior\n- `get_user()` should return a dict with the key `name` (not `username`)\n- `update_email()` should raise `ValueError` if the email does not contain `@`",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "labels": [
+    "bug",
+    "input_validation",
+    "easy"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: safe_read() swallows real errors, count_lines() miscounts the last line, and append_file() crashes on missing dirs",
+  "body": "## Bug Report\n**File:** `src/file_utils.py`\n\n`safe_read()` returns `''` for ANY error including permission errors (should only tolerate FileNotFoundError). `count_lines()` misses the final line when the file lacks a trailing newline. `append_file()` should create missing parent directories but crashes when they don't exist.\n### Expected\n- missing file -> '' but other OSError -> raise\n- no trailing newline still counted\n- append creates parents",
+  "state": "open"
+}

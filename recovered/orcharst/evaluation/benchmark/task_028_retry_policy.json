@@ -1,0 +1,28 @@
+{
+  "task_id": "task_028",
+  "repository": "https://github.com/benchmark-fixtures/task_028_retry_policy",
+  "issue_id": 1,
+  "issue_title": "Bug: backoff_delay() computes exponentially growing delays without a cap and retry loop passes wrong args to the callable",
+  "issue_body": "## Bug Report\n**File:** `src/retry_policy.py`\n\n`backoff_delay(attempt)` grows without bound (ignores `max_delay`) and resets on jitter. `retry_call(func, *args)` calls `func()` without forwarding `args` \u2014 the classic API-misuse bug.\n### Expected\n- delay = min(base * 2**attempt, max_delay)\n- `retry_call` forwards all positional args to `func` and returns its result",
+  "gold_file": "src/retry_policy.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "uncapped exponential delay",
+    "args dropped when calling func"
+  ],
+  "expected_behaviors": [
+    "capped backoff",
+    "args forwarded and result returned"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_028.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_028_retry_policy) defined in evaluation/benchmark/specs",
+    "selection_reason": "API / argument misuse bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "hard",
+    "bug_count": 2,
+    "notes": "Agent must identify src/retry_policy.py."
+  }
+}

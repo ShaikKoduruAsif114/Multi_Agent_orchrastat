@@ -1,0 +1,27 @@
+{
+  "task_id": "task_011",
+  "repository": "https://github.com/benchmark-fixtures/task_011_temperature_converter",
+  "issue_id": 1,
+  "issue_title": "Bug: celsius_to_fahrenheit() uses wrong scale factor and fahrenheit_to_celsius() rounds incorrectly",
+  "issue_body": "## Bug Report\n**File:** `src/temperature.py`\n\n`celsius_to_fahrenheit()` multiplies by 1.8 but forgets the +32 offset, and `fahrenheit_to_celsius()` subtracts 32 AFTER multiplying instead of before.\n### Expected\n- `celsius_to_fahrenheit(100) == 212.0`\n- `fahrenheit_to_celsius(212) == 100.0`",
+  "gold_file": "src/temperature.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "celsius_to_fahrenheit(100) == 180",
+    "fahrenheit_to_celsius(212) != 100"
+  ],
+  "expected_behaviors": [
+    "correct conversion formulas both directions"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_011.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_011_temperature_converter) defined in evaluation/benchmark/specs",
+    "selection_reason": "Arithmetic & logic bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "easy",
+    "bug_count": 2,
+    "notes": "Agent must identify src/temperature.py."
+  }
+}

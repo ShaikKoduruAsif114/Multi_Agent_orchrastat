@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: Ledger.commit_batch() leaves entries half-applied when one transfer fails (no rollback)",
+  "body": "## Bug Report\n**File:** `src/ledger.py`\n\n`commit_batch()` applies transfers one at a time; if a later transfer fails (e.g. insufficient funds) earlier ones stay applied. The batch must be atomic: either all transfers apply or none.\n### Expected\n- any failing transfer rolls back the whole batch and re-raises ValueError\n- `balance()` reflects only fully-applied batches",
+  "state": "open"
+}

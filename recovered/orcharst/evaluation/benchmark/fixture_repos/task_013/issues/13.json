@@ -1,0 +1,11 @@
+{
+  "number": 13,
+  "title": "Bug: word_frequencies() is case-sensitive, top_words() breaks ties inconsistently, and char stats count whitespace",
+  "body": "## Bug Report\n**File:** `src/text_stats.py`\n\n`word_frequencies()` treats 'The' and 'the' as different words. `top_words(n)` does not break frequency ties alphabetically, so output order is nondeterministic. `letter_frequency()` counts spaces and punctuation.\n### Expected\n- case-insensitive counting\n- deterministic tie-break (alphabetical)\n- only alphabetic characters counted in letter_frequency",
+  "repository": "https://github.com/benchmark-fixtures/task_013_text_stats",
+  "labels": [
+    "bug",
+    "data_transformation",
+    "medium"
+  ]
+}

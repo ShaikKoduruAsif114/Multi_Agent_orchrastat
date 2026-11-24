@@ -1,0 +1,27 @@
+{
+  "task_id": "task_025",
+  "repository": "https://github.com/benchmark-fixtures/task_025_slugify",
+  "issue_id": 1,
+  "issue_title": "Bug: slugify() leaves punctuation in output and does not collapse consecutive separators",
+  "issue_body": "## Bug Report\n**File:** `src/slugify.py`\n\n`slugify('Hello, World!')` returns `'hello,-world!'` \u2014 only whitespace/underscores are split, so punctuation survives and consecutive separators produce repeated hyphens ('a  b' -> 'a--b').\n### Expected\n- lowercase, non-alphanumerics become single hyphens, no leading/trailing hyphens\n- `slugify('Hello, World!') == 'hello-world'`",
+  "gold_file": "src/slugify.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "punctuation survives",
+    "'a  b' -> 'a--b'"
+  ],
+  "expected_behaviors": [
+    "clean single-hyphen slugs"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_025.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_025_slugify) defined in evaluation/benchmark/specs",
+    "selection_reason": "Input parsing bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "easy",
+    "bug_count": 2,
+    "notes": "Agent must identify src/slugify.py."
+  }
+}

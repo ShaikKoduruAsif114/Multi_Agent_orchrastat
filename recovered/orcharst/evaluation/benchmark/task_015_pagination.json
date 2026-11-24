@@ -1,0 +1,28 @@
+{
+  "task_id": "task_015",
+  "repository": "https://github.com/benchmark-fixtures/task_015_pagination",
+  "issue_id": 1,
+  "issue_title": "Bug: paginate() returns the wrong slice for the last page and total_pages() over-counts",
+  "issue_body": "## Bug Report\n**File:** `src/pagination.py`\n\n`paginate(items, page, size)` computes `start = page * size` but ends at `start + size - 1`, silently dropping the last item of every page. `total_pages()` uses integer division without rounding up, so 10 items with page size 4 report 2 pages instead of 3.\n### Expected\n- page 2 of [0..9] with size 4 is [4,5,6,7]\n- `total_pages(10, 4) == 3`",
+  "gold_file": "src/pagination.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "every page drops its last item",
+    "total_pages under-counts"
+  ],
+  "expected_behaviors": [
+    "correct slicing",
+    "ceiling division"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_015.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_015_pagination) defined in evaluation/benchmark/specs",
+    "selection_reason": "Off-by-one / boundary logic bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/pagination.py."
+  }
+}

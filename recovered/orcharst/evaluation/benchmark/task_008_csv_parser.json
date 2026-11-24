@@ -1,0 +1,28 @@
+{
+  "task_id": "task_008",
+  "repository": "https://github.com/benchmark-fixtures/task_008_csv_parser",
+  "issue_id": 1,
+  "issue_title": "Bug: parse_csv() splits fields naively on commas inside quoted values and parse_int_list() crashes on whitespace",
+  "issue_body": "## Bug Report\n**File:** `src/csv_parser.py`\n\n`parse_csv()` uses `line.split(',')` so a quoted field containing a comma (`\"Smith, John\"`) is wrongly split into two columns. `parse_int_list()` does not strip surrounding whitespace, so `'1, 2, 3'` crashes with `ValueError: invalid literal`.\n### Expected\n- quoted fields with commas stay intact\n- `parse_int_list('1, 2, 3') == [1, 2, 3]`",
+  "gold_file": "src/csv_parser.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "quoted commas split into columns",
+    "parse_int_list fails on whitespace"
+  ],
+  "expected_behaviors": [
+    "quoted fields intact",
+    "parse_int_list with whitespace OK"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_008.py",
+  "metadata": {
+    "source": "Synthetic single-module fixture repo (task_008_csv_parser) defined in evaluation/benchmark/specs",
+    "selection_reason": "Input parsing bug; pure Python stdlib; verified hidden tests (fail on buggy, pass on fixed)",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "medium",
+    "bug_count": 2,
+    "notes": "Agent must identify src/csv_parser.py."
+  }
+}

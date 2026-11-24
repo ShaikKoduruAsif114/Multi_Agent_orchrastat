@@ -1,0 +1,11 @@
+{
+  "number": 3,
+  "title": "Bug: ShoppingCart.get_total() ignores item quantity",
+  "body": "## Bug Report\n\n**File:** `src/shopping_cart.py`\n\n### Description\nThe `get_total()` method sums only `item['price']` but ignores `item['quantity']`. Adding 3 units of a $10 item returns $10 instead of $30.\n\n`apply_discount()` subtracts the raw percentage number from the total instead of applying it as a percentage (10% of $200 should be $180, the code gives $190).\n\n`remove_item()` crashes with `StopIteration` when the item name does not exist.\n\n### Expected Behavior\n- `get_total()` must compute `price * quantity`\n- `apply_discount(percent)` must compute `total * (1 - percent/100)`\n- `remove_item()` must not raise when the item is absent",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "labels": [
+    "bug",
+    "arithmetic_logic",
+    "medium"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "number": 17,
+  "title": "Bug: ApiClient.get() passes URL as keyword the server mock rejects and post() ignores json_body",
+  "body": "## Bug Report\n**File:** `src/api_client.py`\n\n`ApiClient` wraps an HTTP session. `get()` calls `session.request('GET', params=...)` but passes the query params positionally into the wrong slot, and `post()` builds the body but never forwards it to the session (`json_body` is dropped). Backed by an injectable session for testing.\n### Expected\n- `get('/users', params={'a': 1})` forwards `params={'a': 1}`\n- `post('/users', json_body={...})` forwards `json={...}`",
+  "repository": "https://github.com/benchmark-fixtures/task_017_api_client",
+  "labels": [
+    "bug",
+    "api_misuse",
+    "medium"
+  ]
+}

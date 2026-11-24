@@ -1,0 +1,11 @@
+{
+  "number": 1,
+  "title": "Bug: Calculator.divide() raises ZeroDivisionError instead of ValueError; percentage() and factorial() are wrong",
+  "body": "## Bug Report\n\n**File:** `src/calculator.py`\n\n### Description\n`divide()` raises a raw `ZeroDivisionError` when dividing by zero; the public API contract requires a `ValueError` with the message 'Cannot divide by zero'.\n`percentage(value, percent)` multiplies by `percent / 10` instead of `/ 100`.\n`factorial(0)` recurses forever (missing base case for 0).\n\n### Expected Behavior\n- `divide(10, 0)` raises `ValueError('Cannot divide by zero')`\n- `percentage(200, 10)` returns `20.0`\n- `factorial(0)` returns `1`",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "labels": [
+    "bug",
+    "exception_handling",
+    "easy"
+  ]
+}

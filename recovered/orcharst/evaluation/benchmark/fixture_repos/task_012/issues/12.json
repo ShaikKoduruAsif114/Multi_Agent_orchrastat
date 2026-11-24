@@ -1,0 +1,11 @@
+{
+  "number": 12,
+  "title": "Bug: Config.set() mutates DEFAULTS globally and get() with a missing key raises instead of returning the fallback",
+  "body": "## Bug Report\n**File:** `src/config_loader.py`\n\n`Config.set()` writes into the shared `DEFAULTS` dict, so two `Config` instances leak values into each other. `get(key, default)` raises `KeyError` instead of returning `default` when the key is missing.\n### Expected\n- instances have independent overrides\n- `get('missing', 'fb') == 'fb'`",
+  "repository": "https://github.com/benchmark-fixtures/task_012_config_loader",
+  "labels": [
+    "bug",
+    "state_management",
+    "medium"
+  ]
+}

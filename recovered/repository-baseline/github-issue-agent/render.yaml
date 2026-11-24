@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: github-issue-agent
+    env: docker
+    dockerfilePath: Dockerfile
+    region: oregon
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8000

@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: group_by() loses elements, flatten() drops nested empty lists, and dedupe() keeps the wrong occurrence",
+  "body": "## Bug Report\n**File:** `src/data_transform.py`\n\n`group_by(items, key)` only keeps the last element per key because it overwrites instead of appending. `flatten()` skips empty nested lists entirely (they should vanish but deeper nesting is mishandled). `dedupe()` keeps the LAST occurrence of duplicates instead of the first.\n### Expected\n- group_by appends\n- flatten handles arbitrary nesting\n- dedupe keeps first occurrence order",
+  "state": "open"
+}

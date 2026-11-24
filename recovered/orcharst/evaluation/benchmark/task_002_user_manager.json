@@ -1,0 +1,30 @@
+{
+  "task_id": "task_002",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "issue_id": 2,
+  "issue_title": "Bug: get_user() returns wrong key name causing KeyError in API consumers",
+  "issue_body": "## Bug Report\n\n**File:** `src/user_manager.py`\n**Function:** `get_user(user_id)`\n\n### Description\nThe `get_user()` function returns a dictionary with the key `username` but the user object is stored with the key `name`. This inconsistency breaks any code that calls `get_user()` and tries to access `result['name']`.\n\nAdditionally, `update_email()` accepts any string as an email without validating that it contains an `@` symbol, allowing corrupt data to be stored.\n\n### Steps to Reproduce\n```python\nfrom src.user_manager import create_user, get_user, update_email\n\ncreate_user(1, \"Alice\", \"alice@example.com\")\nuser = get_user(1)\nprint(user['name'])       # KeyError: 'name' — key is 'username' instead\nupdate_email(1, \"notanemail\")  # Accepted without error — BAD!\n```\n\n### Expected Behavior\n- `get_user()` should return `{'id': 1, 'name': 'Alice', 'email': '...'}` (key must be `name`)\n- `update_email()` should raise `ValueError` if email does not contain `@`",
+  "gold_file": "src/user_manager.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "get_user() returns dict with key 'username' instead of 'name'",
+    "update_email() accepts emails without '@' symbol"
+  ],
+  "expected_behaviors": [
+    "get_user(1) returns {'id': 1, 'name': 'Alice', 'email': 'alice@example.com'}",
+    "get_user(1)['name'] does not raise KeyError",
+    "update_email(1, 'notanemail') raises ValueError",
+    "update_email(1, 'valid@example.com') returns True"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_002.py",
+  "metadata": {
+    "source": "Local test-buggy-app repository (ShaikKoduruAsif114/agent-bug-testground)",
+    "selection_reason": "Clear bug descriptions, pure Python stdlib, known ground truth, intentionally planted bugs",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "easy",
+    "bug_count": 2,
+    "notes": "Global users_db state — hidden tests must reset it between test cases."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "number": 1,
+  "title": "Bug: slugify() leaves punctuation in output and does not collapse consecutive separators",
+  "body": "## Bug Report\n**File:** `src/slugify.py`\n\n`slugify('Hello, World!')` returns `'hello,-world!'` \u2014 only whitespace/underscores are split, so punctuation survives and consecutive separators produce repeated hyphens ('a  b' -> 'a--b').\n### Expected\n- lowercase, non-alphanumerics become single hyphens, no leading/trailing hyphens\n- `slugify('Hello, World!') == 'hello-world'`",
+  "state": "open"
+}

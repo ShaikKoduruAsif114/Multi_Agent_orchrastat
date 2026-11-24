@@ -1,0 +1,30 @@
+
+# Recovery: local evidence is never publication material.
+private/
+*.local.json
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!.env.sample
+!**/.env.example
+!**/.env.sample
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+*.arrow
+*.parquet
+*.sqlite
+*.sqlite3
+*.db
+
+
+# Auxiliary source with private local path literals.
+/recovered/orcharst/evaluation/benchmark/validate_specs.py
+/recovered/orcharst/test-buggy-app/create_repo.py

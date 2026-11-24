@@ -1,0 +1,11 @@
+{
+  "number": 6,
+  "title": "Bug: Inventory.restock() crashes with KeyError when adding a new item to stock",
+  "body": "## Bug Report\n**File:** `src/inventory_manager.py`\n\nThe `restock(name, qty)` method raises `KeyError` when the item is not already in stock (it should add new items automatically). Additionally `get_low_stock(threshold)` returns items whose stock is strictly greater than the threshold instead of at-or-below, so critically low stock is never reported.\n### Expected\n- `restock('NewItem', 5)` adds the item instead of crashing\n- `get_low_stock(10)` includes items with stock == 10",
+  "repository": "https://github.com/benchmark-fixtures/task_006_inventory_manager",
+  "labels": [
+    "bug",
+    "exception_handling",
+    "medium"
+  ]
+}

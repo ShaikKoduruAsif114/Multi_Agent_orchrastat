@@ -1,0 +1,11 @@
+{
+  "number": 24,
+  "title": "Bug: LRUCache evicts the most recently used entry and get() does not refresh recency",
+  "body": "## Bug Report\n**File:** `src/lru_cache.py`\n\n`LRUCache.get()` does not move the accessed key to the most-recently-used position, and `put()` evicts from the FRONT of the order list (which after insertion order is the *most* recently used). Correct LRU behavior required.\n### Expected\n- get() refreshes recency\n- eviction removes the LEAST recently used entry\n- capacity never exceeded",
+  "repository": "https://github.com/benchmark-fixtures/task_024_lru_cache",
+  "labels": [
+    "bug",
+    "state_management",
+    "hard"
+  ]
+}

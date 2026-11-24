@@ -1,0 +1,32 @@
+{
+  "task_id": "task_001",
+  "repository": "https://github.com/ShaikKoduruAsif114/agent-bug-testground",
+  "issue_id": 1,
+  "issue_title": "Bug: divide() crashes with ZeroDivisionError when divisor is zero",
+  "issue_body": "## Bug Report\n\n**File:** `src/calculator.py`\n**Function:** `divide(a, b)`\n\n### Description\nThe `divide()` function does not handle the case when `b = 0`. Calling `divide(10, 0)` raises an unhandled `ZeroDivisionError` and crashes the entire application.\n\nAdditionally, the `percentage()` function uses `/10` instead of `/100`, causing all percentage calculations to be 10x too large.\n\nThe `factorial()` function is also missing the base case for `n == 0`, causing infinite recursion when called with `0`.\n\n### Steps to Reproduce\n```python\nfrom src.calculator import divide, percentage, factorial\n\ndivide(10, 0)      # ZeroDivisionError\npercentage(200, 10)  # Returns 200.0 instead of 20.0\nfactorial(0)       # RecursionError: maximum recursion depth exceeded\n```\n\n### Expected Behavior\n- `divide(10, 0)` should raise a clear `ValueError` with message \"Cannot divide by zero\"\n- `percentage(200, 10)` should return `20.0`\n- `factorial(0)` should return `1`",
+  "gold_file": "src/calculator.py",
+  "gold_file_alternatives": [],
+  "buggy_behaviors": [
+    "divide(10, 0) raises ZeroDivisionError instead of ValueError",
+    "percentage(200, 10) returns 200.0 instead of 20.0 (divides by 10 not 100)",
+    "factorial(0) hits RecursionError (missing base case n==0 -> 1)"
+  ],
+  "expected_behaviors": [
+    "divide(10, 0) raises ValueError('Cannot divide by zero')",
+    "divide(10, 2) returns 5.0",
+    "percentage(200, 10) returns 20.0",
+    "factorial(0) returns 1",
+    "factorial(5) returns 120"
+  ],
+  "hidden_test_file": "evaluation/hidden_tests/test_eval_task_001.py",
+  "metadata": {
+    "source": "Local test-buggy-app repository (ShaikKoduruAsif114/agent-bug-testground)",
+    "selection_reason": "Clear bug descriptions, pure Python stdlib, known ground truth, intentionally planted bugs",
+    "language": "Python",
+    "dependencies": [],
+    "license": "Project-internal test data",
+    "difficulty": "easy",
+    "bug_count": 3,
+    "notes": "All 3 bugs are in a single file. Agent must identify src/calculator.py."
+  }
+}
